@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-02 07:09:34"/>
+  <meta name="updated_date"  content="2020-09-02 10:47:12"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -204,78 +204,74 @@
 <li>use vscode to add the following code to <strong>app3.json</strong></li>
 </ul>
 <div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;AS3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;deploy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;persist&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;declaration&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ADC&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;schemaVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;example-04&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant 2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;Simple HTTP application with round robin pool&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Common&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Shared&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;shared&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;virt_addr_10_1_20_20&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Address&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;virtualAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.20.20&quot;</span>
-                <span class="p">}</span>
+   <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;AS3&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;deploy&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;persist&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+   <span class="s2">&quot;declaration&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ADC&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;schemaVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;tenant2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Sample 4&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;HTTPS with sslbridging and external WAF&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Common&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Shared&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;shared&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;virt_addr_10_1_20_20&quot;</span><span class="p">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Address&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;virtualAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.20.20&quot;</span>
+             <span class="p">}</span>
+         <span class="p">}</span>
+     <span class="p">},</span>
+      <span class="s2">&quot;tenant_02&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;App_3&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTPS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+               <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
+           <span class="p">],</span>
+            <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web_pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;policyWAF&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;My_AWAF_Policy&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;serverTLS&quot;</span><span class="p">:</span> <span class="s2">&quot;webtls&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;web_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;loadBalancingMode&quot;</span><span class="p">:</span> <span class="s2">&quot;predictive-node&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;http&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
+               <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+               <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+               <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+               <span class="s2">&quot;10.1.10.5&quot;</span>
+               <span class="p">]</span>
+            <span class="p">}]</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;webtls&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;TLS_Server&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;certificates&quot;</span><span class="p">:</span> <span class="p">[{</span>
+               <span class="s2">&quot;certificate&quot;</span><span class="p">:</span> <span class="s2">&quot;webcert&quot;</span>
+            <span class="p">}]</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;webcert&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Certificate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;using default&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;certificate&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bigip&quot;</span><span class="p">:</span><span class="s2">&quot;/Common/default.crt&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;privateKey&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bigip&quot;</span><span class="p">:</span><span class="s2">&quot;/Common/default.key&quot;</span><span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;My_AWAF_Policy&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;WAF_Policy&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;ignoreChanges&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+               <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/scshitole/more-terraform/master/Sample_app_sec_02_waf_policy.xml&quot;</span>
             <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;tenant_02&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;App_3&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;app3_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTPS&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
-                <span class="p">],</span>
-                          <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web3000_pool&quot;</span><span class="p">,</span>
-                          <span class="s2">&quot;policyWAF&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;My_ASM_Policy&quot;</span><span class="p">},</span>
-                          <span class="s2">&quot;serverTLS&quot;</span><span class="p">:</span> <span class="s2">&quot;webtls&quot;</span>
-                  <span class="p">},</span>
-                <span class="s2">&quot;web3000_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="s2">&quot;http&quot;</span>
-                    <span class="p">],</span>
-                    <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
-                                          <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-                                          <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
-                        <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
-                                                  <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
-                                                  <span class="s2">&quot;10.1.10.10&quot;</span>
-                                          <span class="p">]</span>
-                                          <span class="p">}]</span>
-                          <span class="p">},</span>
-                          <span class="s2">&quot;My_ASM_Policy&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;WAF_Policy&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/Larsende/Agility2020-AS3/masterimages/Common_test_policy__2020-1-13_9-38-13__bigip02.as3lab.com.xml&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;ignoreChanges&quot;</span><span class="p">:</span> <span class="n">true</span>
-                            <span class="p">},</span>
-                          <span class="s2">&quot;webtls&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;TLS_Server&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;certificates&quot;</span><span class="p">:</span> <span class="p">[{</span>
-                                          <span class="s2">&quot;certificate&quot;</span><span class="p">:</span> <span class="s2">&quot;webcert&quot;</span>
-                                          <span class="p">}]</span>
-                          <span class="p">},</span>
-                          <span class="s2">&quot;webcert&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Certificate&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;in practice we recommend using a passphrase&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;certificate&quot;</span><span class="p">:</span> <span class="s2">&quot;-----BEGIN CERTIFICATE-----</span><span class="se">\n</span><span class="s2">MIICnDCCAgWgAwIBAgIJAJ5n2b0OCEjwMA0GCSqGSIb3DQEBCwUAMGcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApXYXNoaW5ndG9uMRAwDgYDVQQHDAdTZWF0dGxlMRQwEgYDVQQKDAtmNV9OZXR3b3JrczEbMBkGA1UEAwwSc2FtcGxlLmV4YW1wbGUubmV0MB4XDTE3MTEyNjE5NTAyNFoXDTE4MDIyNTE5NTAyNFowZzELMAkGA1UEBhMCVVMxEzARBgNVBAgMCldhc2hpbmd0b24xEDAOBgNVBAcMB1NlYXR0bGUxFDASBgNVBAoMC2Y1X05ldHdvcmtzMRswGQYDVQQDDBJzYW1wbGUuZXhhbXBsZS5uZXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALEsuXmSXVQpYjrZPW+WiTBjn491mwZYT7Q92V1HlSBtM6WdWlK1aZN5sovfKtOX7Yrm8xa+e4o/zJ2QYLyyv5O+t2EGN/4qUEjEAPY9mwJdfzRQy6Hyzm84J0QkTuUJ/EjNuPji3D0QJRALUTzu1UqqDCEtiN9OGyXEkh7uvb7BAgMBAAGjUDBOMB0GA1UdDgQWBBSVHPNrGWrjWyZvckQxFYWO59FRFjAfBgNVHSMEGDAWgBSVHPNrGWrjWyZvckQxFYWO59FRFjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4GBAJeJ9SEckEwPhkXOm+IuqfbUS/RcziifBCTmVyE+Fa/j9pKSYTgiEBNdbJeBEa+gPMlQtbV7Y2dy8TKx/8axVBHiXC5geDML7caxOrAyHYBpnx690xJTh5OIORBBM/a/NvaR+P3CoVebr/NPRh9oRNxnntnqvqD7SW0U3ZPe3tJc</span><span class="se">\n</span><span class="s2">-----END CERTIFICATE-----&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;privateKey&quot;</span><span class="p">:</span> <span class="s2">&quot;-----BEGIN RSA PRIVATE KEY-----</span><span class="se">\n</span><span class="s2">Proc-Type: 4,ENCRYPTED</span><span class="se">\n</span><span class="s2">DEK-Info: AES-256-CBC,D8FFCE6B255601587CB54EC29B737D31</span><span class="se">\n\n</span><span class="s2">kv4Fc3Jn0Ujkj0yRjt+gQQfBLSNF2aRLUENXnlr7Xpzqu0Ahr3jS1bAAnd8IWnsR</span><span class="se">\n</span><span class="s2">yILqVmKsYF2DoHh0tWiEAQ7/y/fe5DTFhK7N4Wml6kp2yVMkP6KC4ssyYPw27kjK</span><span class="se">\n</span><span class="s2">DBwBZ5O8Ioej08A5sgsLCmglbmtSPHJUn14pQnMTmLOpEtOsu6S+2ibPgSNpdg0b</span><span class="se">\n</span><span class="s2">CAJNG/KHe+Vkx59qNDyDeKb7FZOlsX30+y67zUq9GQqJEDuysPJ2BUNP0IJXAjst</span><span class="se">\n</span><span class="s2">FIt1qNoZew+5KDYs7u/lPxcMGTirUhgI84Jy4WcDvSOsP/tKlxj04TbIE3epmSKy</span><span class="se">\n</span><span class="s2">+TihHkwY7ngIGtcm3Sfqk5jz2RXoj1/Ac3SW8kVTYaOUogBhn7zAq4Wju6Et4hQG</span><span class="se">\n</span><span class="s2">RGapsJp1aCeZ/a4RCDTxspcKoMaRa97/URQb0hBRGx3DGUhzpmX9zl7JI2Xa5D3R</span><span class="se">\n</span><span class="s2">mdBXtjLKYJTdIMdd27prBEKhMUpae2rz5Mw4J907wZeBq/wu+zp8LAnecfTe2nGY</span><span class="se">\n</span><span class="s2">E32x1U7gSEdYOGqnwxsOexb1jKgCa67Nw9TmcMPV8zmH7R9qdvgxAbAtwBl1F9OS</span><span class="se">\n</span><span class="s2">fcGaC7epf1AjJLtaX7krWmzgASHl28Ynh9lmGMdv+5QYMZvKG0LOg/n3m8uJ6sKy</span><span class="se">\n</span><span class="s2">IzzvaJswwn0j5P5+czyoV5CvvdCfKnNb+3jUEN8I0PPwjBGKr4B1ojwhogTM248V</span><span class="se">\n</span><span class="s2">HR69D6TxFVMfGpyJhCPkbGEGbpEpcffpgKuC/mEtMqyDQXJNaV5HO6HgAJ9F1P6v</span><span class="se">\n</span><span class="s2">5ehHHTMRvzCCFiwndHdlMXUjqSNjww6me6dr6LiAPbejdzhL2vWx1YqebOcwQx3G</span><span class="se">\n</span><span class="s2">-----END RSA PRIVATE KEY-----&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;passphrase&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                    <span class="s2">&quot;ciphertext&quot;</span><span class="p">:</span> <span class="s2">&quot;ZjVmNQ==&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;protected&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJkaXIiLCJlbmMiOiJub25lIn0&quot;</span>
-                                  <span class="p">}</span>
-                          <span class="p">}</span>
-                  <span class="p">}</span>
-          <span class="p">}</span>
-  <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -286,7 +282,6 @@
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/tapply.png"><img alt="../../_images/tapply.png" src="../../_images/tapply.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
@@ -294,7 +289,7 @@
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
 <li>Explore Local Traffic -&gt; Network Map to view tenant02 app3 services</li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/tapply.png"><img alt="../../_images/tapply.png" src="../../_images/tapply.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/lab3nmap.png"><img alt="../../_images/lab3nmap.png" src="../../_images/lab3nmap.png" style="height: 300px;" /></a>
 </li>
 </ol>
 </div>
