@@ -5,7 +5,7 @@ Deploy AS3 WAF Policy
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to validate no app services
+   - Explore Local Traffic -> Network Map to validate tenant_02 app services does not exist
 
 #. Create main.tf to use terraform bigip provider
 
@@ -115,7 +115,7 @@ Deploy AS3 WAF Policy
 		      		},
 	      			"My_ASM_Policy": {
 		      			"class": "WAF_Policy",
-		      			"url": "https://github.com/f5devcentral/f5-asm-policy-templates/blob/master/owasp_ready_template/owasp-auto-tune-v1.1.xml",
+		      			"url": "https://raw.githubusercontent.com/Larsende/Agility2020-AS3/masterimages/Common_test_policy__2020-1-13_9-38-13__bigip02.as3lab.com.xml",
 		      			"ignoreChanges": true
 	      			  },
       				"webtls": {

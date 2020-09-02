@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-02 09:34:51"/>
+  <meta name="updated_date"  content="2020-09-02 07:09:34"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -145,7 +145,7 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to validate no app services</li>
+<li>Explore Local Traffic -&gt; Network Map to validate tenant_02 app services does not exist</li>
 </ul>
 </li>
 <li><p class="first">Create main.tf to use terraform bigip provider</p>
@@ -254,7 +254,7 @@
                           <span class="p">},</span>
                           <span class="s2">&quot;My_ASM_Policy&quot;</span><span class="p">:</span> <span class="p">{</span>
                                   <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;WAF_Policy&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/f5devcentral/f5-asm-policy-templates/blob/master/owasp_ready_template/owasp-auto-tune-v1.1.xml&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/Larsende/Agility2020-AS3/masterimages/Common_test_policy__2020-1-13_9-38-13__bigip02.as3lab.com.xml&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;ignoreChanges&quot;</span><span class="p">:</span> <span class="n">true</span>
                             <span class="p">},</span>
                           <span class="s2">&quot;webtls&quot;</span><span class="p">:</span> <span class="p">{</span>
