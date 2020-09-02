@@ -1,0 +1,114 @@
+app server notes:
+docker run --restart unless-stopped -d -p 3000:3000 bkimminich/juice-shop
+docker run --restart unless-stopped -d -p 3030:3000 bkimminich/juice-shop
+
+docker run -P -p 0.0.0.0:8080:80/tcp -d --restart unless-stopped nginxdemos/hello 
+docker run -P -p 0.0.0.0:8000:80/tcp -d --restart unless-stopped nginxdemos/hello 
+
+Begin Lab Notes
+
+New->Terminal->New Terminal
+Opens a terminal on bottom half of window
+ubuntu@client:~/projects$
+
+Install go
+wget --quiet --continue --show-progress https://golang.org/dl/go1.15.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+go version
+rm go1.15.linux-amd64.tar.gz
+
+https://github.com/F5Networks/terraform-provider-bigip
+Install Terraform
+wget --quiet --continue --show-progress  https://releases.hashicorp.com/terraform/0.13.0/terraform_0.13.0_freebsd_amd64.zip
+sudo unzip terraform_0.13.0_freebsd_amd64.zip
+sudo mv terraform /usr/local/bin
+terraform -version
+rm terraform_0.13.0_freebsd_amd64.zip
+
+
+BIG-IP Terraform Provider
+git clone https://github.com/F5Networks/terraform-provider-bigip.git
+cd terraform-provider-bigip/
+export GOFLAGS=-mod=vendor
+go build
+
+
+
+Lab1
+Login to UDF
+Access client via firefox
+login to bigip
+
+Access client via ssh
+cd Lab1
+Test terraform connection to bigip
+touch test.tf
+Edit test.tf by selecting test.tf on explorer window.  Add code as shown below.
+terraform {
+  required_providers {
+    bigip = {
+      source = "F5Networks/bigip"
+      version = "1.3.1"
+    }
+  }
+}
+
+provider "bigip" {
+    address = "10.1.1.6"
+    username = "admin"
+    password = "F5d3vops$"
+}
+
+resource "bigip_command" "showversion" {
+  commands   = ["show sys version"]
+}
+
+output "showversion" {
+    value = "${bigip_command.showversion.command_result}"
+}
+
+
+terraform init
+
+Note terraform and terraform bigip provider versions.
+-insiert photo
+
+terraform plan
+Note +
+
+terraform apply
+Enter "yes" to confirm
+Note bigip version 15.1.0.4 returned to signify successful connection to BIG-IP.  Terraform.tfstate
+
+
+
+
+BIG-IP Onboarding
+vim main.tf
+terraform plan
+terraform apply
+verify changes on bigip firefox
+
+BIG-IP App Deploymnet
+cd lab2
+config each section
+verify changes on bigip firefox and test app
+delete all
+verify changes on bigip
+modify depends_on
+terraform apply
+terraform delete
+
+BIG-IP AS3 App Deployment 
+cd lab3
+terraform ex1
+verify changes on bigip firefox and test app
+terraform ex2
+verify changes on bigip firefox and test app
+terraform ex3
+verify changes on bigip firefox and test app
+
+BIG-IP AS3 Security Workflow
+cd lab4
+
