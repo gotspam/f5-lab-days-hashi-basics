@@ -5,11 +5,11 @@ Deploy App Services via AS3
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to validate no app services
+   - Explore **Local Traffic -> Network Map** to validate no app services
 
-#. Create main.tf to use terraform bigip provider
+#. Create **main.tf** to use terraform bigip provider
 
-   - Open client server vscode termninal
+   - Open client server **vscode termninal**
    - ``mkdir ~/projects/lab2``
    - ``cd ~/projects/lab2``
    - ``touch main.tf``
@@ -35,7 +35,7 @@ Deploy App Services via AS3
          as3_json = "${file("app1.json")}"
       }
 
-#. Create variables.tf
+#. Create **variables.tf**
 
    - ``touch variables.tf``
    - use vscode to add the following code to **variables.tf**
@@ -46,7 +46,7 @@ Deploy App Services via AS3
       variable "username" {}
       variable "password" {}
 
-#. Create terraform.tfvars
+#. Create **terraform.tfvars**
 
    - ``touch terraform.tfvars``
    - use vscode to add the following code to **terraform.tfvars**
@@ -57,7 +57,7 @@ Deploy App Services via AS3
       username = "admin"
       password = "F5d3vops$"
 
-#. Create app1.json
+#. Create **app1.json**
 
    - ``touch app1.json``
    - use vscode to add the following code to **app1.json**
@@ -130,7 +130,7 @@ Deploy App Services via AS3
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view app1 services
+   - Explore **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/tenant1.png
        :height: 300px
@@ -224,9 +224,9 @@ Deploy App Services via AS3
       }
       }
 
-#. Modify main.tf to use app1a.json
+#. Modify **main.tf** to use **app1a.json**
 
-   - use vscode to replace app1.json with app1a.json
+   - use vscode to replace **app1.json** with **app1a.json**
 
    .. code:: json
 
@@ -239,11 +239,14 @@ Deploy App Services via AS3
    - ``terraform plan``
    - ``terraform apply -auto-approve``
 
-#. Confirm BIG-IP is now configured
+#. Confirm BIG-IP is now configured with multiple apps
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view app1 and app2 services
+   - Explore **Local Traffic -> Network Map** to view **app1** and **app2** services
 
    .. image:: /_static/tenant1a.png
        :height: 300px
+
+   .. TIP:: 
+      Creating multiple versions of your as3 json files allows for quick rollback to previous version if issues occur.

@@ -14,7 +14,7 @@
   <meta name="title" content="Modify and Destroy App Services Configuration"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-02 10:47:12"/>
+  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -163,6 +163,10 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Follow same syntax and spacing formats for best results.  Notice existing bigip_ltm_node and bigip_ltm_pool_attachment resource dependencies.</p>
+</div>
 </li>
 <li><p class="first">Redeploy App1 services</p>
 <ul class="simple">
@@ -171,12 +175,13 @@
 </ul>
 <a class="reference internal image-reference" href="../../_images/tapply.png"><img alt="../../_images/tapply.png" src="../../_images/tapply.png" style="height: 300px;" /></a>
 </li>
-<li><p class="first">Confirm app1_pool now contains 2 pool members</p>
+<li><p class="first">Confirm <strong>app1_pool</strong> now contains 2 pool members</p>
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to view app1 services</li>
+<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
 </ul>
+<a class="reference internal image-reference" href="../../_images/app1w2pool.png"><img alt="../../_images/app1w2pool.png" src="../../_images/app1w2pool.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Destroy App1 services</p>
 <ul class="simple">
@@ -188,7 +193,7 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to view app1 services</li>
+<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view no app services</li>
 </ul>
 </li>
 </ol>

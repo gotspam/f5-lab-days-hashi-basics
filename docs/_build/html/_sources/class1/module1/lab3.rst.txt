@@ -20,6 +20,9 @@ Modify and Destroy App Services Configuration
         node = "/Common/10.1.10.10:80"
       }
 
+   .. HINT:: 
+      Follow same syntax and spacing formats for best results.  Notice existing bigip_ltm_node and bigip_ltm_pool_attachment resource dependencies.
+
 #. Redeploy App1 services
 
    - ``terraform plan``
@@ -28,11 +31,14 @@ Modify and Destroy App Services Configuration
    .. image:: /_static/tapply.png
        :height: 300px
 
-#. Confirm app1_pool now contains 2 pool members
+#. Confirm **app1_pool** now contains 2 pool members
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view app1 services
+   - Explore **Local Traffic -> Network Map** to view app1 services
+
+   .. image:: /_static/app1w2pool.png
+       :height: 300px
 
 #. Destroy App1 services
 
@@ -45,4 +51,4 @@ Modify and Destroy App Services Configuration
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view app1 services
+   - Explore **Local Traffic -> Network Map** to view no app services

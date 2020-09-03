@@ -1,15 +1,17 @@
 BIG-IP Infrastructure Onboarding
 ################################
 
-#. Confirm BIG-IP is not configured
+In this section you will configure basic network configurations like NTP, DNS, and interface IP addresses.
+
+#. Confirm BIG-IP is not configured with basic network configurations.
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Network SelfIP and Vlan settings are not configured
+   - Explore **Network SelfIP** and **Vlan** settings are not configured
 
-#. Create main.tf to use terraform bigip provider
+#. Create **main.tf** to use the `[Terraform Provider for F5 BIG-IP] <https://registry.terraform.io/providers/F5Networks/bigip/latest/docs>`__
 
-   - Open client server vscode termninal
+   - Open client server **vscode termninal**
    - ``mkdir ~/projects/lab1a``
    - ``cd ~/projects/lab1a``
    - ``touch main.tf``
@@ -40,6 +42,7 @@ BIG-IP Infrastructure Onboarding
        value = "${bigip_command.showversion.command_result}"
      }
 
+
 #. Test terraform connectivity to bigip
 
    - ``terraform  init``
@@ -57,7 +60,9 @@ BIG-IP Infrastructure Onboarding
    .. image:: /_static/tapply.png
        :height: 300px
 
-#. Create f5base.tf to configure base bigip network
+   - Type ``yes`` to approve action when prompted
+
+#. Create **f5base.tf** to configure base bigip network (NTP, DNS, VLANS and SELFIPs)
 
    - ``touch f5base.tf``
    - use vscode to add the following code to **f5base.tf**
@@ -114,7 +119,7 @@ BIG-IP Infrastructure Onboarding
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Network -> SelfIP and Vlan settings are now configured
+   - Explore **Network -> SelfIP and Vlan** settings are now configured
 
    .. image:: /_static/selfip.png
        :height: 150px

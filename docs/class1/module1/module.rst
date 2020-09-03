@@ -9,23 +9,24 @@ You will walk through a typical device onboarding workflow to deploy base networ
 Access Lab Environment
 ~~~~~~~~~~~~~~~~~~~~~~
 
-#. Log in to the Unified Demo Framework Portal (https://udf.f5.com)
-#. Deploy the DevOps Base blueprint
+#. Log in to F5's `[Unified Demo Framework Portal] <https://udf.f5.com>`__
+
+#. Deploy the **DevOps Base** blueprint
 
    .. image:: /_static/deploybp.png
       :scale: 40 %
 
-#. Under components, click the access dropdown on the client system, then click VS CODE
+#. Under components, click the access dropdown on the **client ubuntu** server, then click **VS CODE**.  We will use this for making edits to the terraform files.
 
    .. image:: /_static/vscode.png
       :scale: 40 %
 
-#. Open a new terminal in VS Code
+#. Open a **New Terminal** in **VS Code** to run commands in this lab
 
    .. image:: /_static/newterm.png
       :scale: 35 %
 
-#. Under components, click the access dropdown on the client system, then click Firefox
+#. Under components, click the access dropdown on the **client ubuntu** server, then click **Firefox**
 
    .. image:: /_static/firefox.png
       :scale: 40 %

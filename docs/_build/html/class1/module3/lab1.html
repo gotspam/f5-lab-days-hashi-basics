@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-02 10:47:12"/>
+  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -145,12 +145,12 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to validate tenant_02 app services does not exist</li>
+<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to validate tenant_02 app services does not exist</li>
 </ul>
 </li>
-<li><p class="first">Create main.tf to use terraform bigip provider</p>
+<li><p class="first">Create <strong>main.tf</strong> to use terraform bigip provider</p>
 <ul class="simple">
-<li>Open client server vscode termninal</li>
+<li>Open client server <strong>vscode termninal</strong></li>
 <li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab3</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab3</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">main.tf</span></code></li>
@@ -176,7 +176,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Create variables.tf</p>
+<li><p class="first">Create <strong>variables.tf</strong></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">variables.tf</span></code></li>
 <li>use vscode to add the following code to <strong>variables.tf</strong></li>
@@ -187,7 +187,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Create terraform.tfvars</p>
+<li><p class="first">Create <strong>terraform.tfvars</strong></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">terraform.tfvars</span></code></li>
 <li>use vscode to add the following code to <strong>terraform.tfvars</strong></li>
@@ -198,7 +198,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Create app3.json</p>
+<li><p class="first">Create <strong>app3.json</strong></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app3.json</span></code></li>
 <li>use vscode to add the following code to <strong>app3.json</strong></li>
@@ -228,8 +228,8 @@
       <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
       <span class="s2">&quot;App_3&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;app3_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTPS&quot;</span><span class="p">,</span>
             <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
@@ -287,9 +287,13 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to view tenant02 app3 services</li>
+<li>Explore Local <strong>Traffic -&gt; Network Map</strong> to view tenant02 app3 services</li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/lab3nmap.png"><img alt="../../_images/lab3nmap.png" src="../../_images/lab3nmap.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/app3nmap.png"><img alt="../../_images/app3nmap.png" src="../../_images/app3nmap.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Click <strong>app3_vs</strong> to view details of <strong>tenant02 app3</strong> services and note a WAF Policy associated</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/app3detail.png"><img alt="../../_images/app3detail.png" src="../../_images/app3detail.png" style="height: 300px;" /></a>
 </li>
 </ol>
 </div>

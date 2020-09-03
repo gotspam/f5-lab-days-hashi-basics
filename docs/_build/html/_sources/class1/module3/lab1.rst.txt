@@ -5,11 +5,11 @@ Deploy AS3 WAF Policy
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to validate tenant_02 app services does not exist
+   - Explore **Local Traffic -> Network Map** to validate tenant_02 app services does not exist
 
-#. Create main.tf to use terraform bigip provider
+#. Create **main.tf** to use terraform bigip provider
 
-   - Open client server vscode termninal
+   - Open client server **vscode termninal**
    - ``mkdir ~/projects/lab3``
    - ``cd ~/projects/lab3``
    - ``touch main.tf``
@@ -35,7 +35,7 @@ Deploy AS3 WAF Policy
          as3_json = "${file("app3.json")}"
       }
 
-#. Create variables.tf
+#. Create **variables.tf**
 
    - ``touch variables.tf``
    - use vscode to add the following code to **variables.tf**
@@ -46,7 +46,7 @@ Deploy AS3 WAF Policy
       variable "username" {}
       variable "password" {}
 
-#. Create terraform.tfvars
+#. Create **terraform.tfvars**
 
    - ``touch terraform.tfvars``
    - use vscode to add the following code to **terraform.tfvars**
@@ -57,7 +57,7 @@ Deploy AS3 WAF Policy
       username = "admin"
       password = "F5d3vops$"
 
-#. Create app3.json
+#. Create **app3.json**
 
    - ``touch app3.json``
    - use vscode to add the following code to **app3.json**
@@ -89,8 +89,8 @@ Deploy AS3 WAF Policy
             "class": "Tenant",
             "App_3": {
                   "class": "Application",
-                  "template": "https",
-                  "serviceMain": {
+                  "template": "generic",
+                  "app3_vs": {
                   "class": "Service_HTTPS",
                   "virtualAddresses": [
                      {"use": "/Common/Shared/virt_addr_10_1_20_20"}
@@ -145,7 +145,12 @@ Deploy AS3 WAF Policy
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view tenant02 app3 services
+   - Explore Local **Traffic -> Network Map** to view tenant02 app3 services
 
-   .. image:: /_static/lab3nmap.png
+   .. image:: /_static/app3nmap.png
+       :height: 300px
+
+   - Click **app3_vs** to view details of **tenant02 app3** services and note a WAF Policy associated
+
+   .. image:: /_static/app3detail.png
        :height: 300px
