@@ -1,59 +1,9 @@
 BIG-IP App Services Configuration
 #################################
 
-#. Confirm BIG-IP is not configured
+In this section you will configure basic application delivery services such as nodes, pools, pool members and virtual servers.
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to validate no app services
-
-#. Create main.tf to use terraform bigip provider
-
-   - Open client server vscode termninal
-   - ``mkdir ~/projects/lab1b``
-   - ``cd ~/projects/lab1b``
-   - ``touch main.tf``
-   - use vscode to add the following code to **main.tf**
-
-   .. code:: json
-
-      terraform {
-        required_providers {
-          bigip = {
-            source = "F5Networks/bigip"
-          }
-        }
-      }
-
-      provider "bigip" {
-          address = var.address
-          username = var.username
-          password = var.password
-      }
-
-#. Create variables.tf
-
-   - ``touch variables.tf``
-   - use vscode to add the following code to **variables.tf**
-
-   .. code:: json
-
-      variable "address" {}
-      variable "username" {}
-      variable "password" {}
-
-#. Create terraform.tfvars
-
-   - ``touch terraform.tfvars``
-   - use vscode to add the following code to **terraform.tfvars**
-
-   .. code:: json
-
-      address = "10.1.1.6"
-      username = "admin"
-      password = "F5d3vops$"
-
-#. Create app1.tf
+#. Create **app1.tf**
 
    - ``touch app1.tf``
    - use vscode to add the following code to **app1.tf**
@@ -110,7 +60,7 @@ BIG-IP App Services Configuration
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local Traffic -> Network Map to view app1 services
+   - Explore **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/app1.png
        :height: 300px

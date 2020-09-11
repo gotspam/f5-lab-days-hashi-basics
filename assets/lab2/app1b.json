@@ -1,0 +1,119 @@
+{
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+    "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.0.0",
+        "id": "example-01",
+        "label": "Tenant 1",
+        "remark": "Simple HTTP application with round robin pool",
+        "Common": {
+            "class": "Tenant",
+            "Shared": {
+                "class": "Application",
+                "template": "shared",
+                "virt_addr_10_1_20_20": {
+                    "class": "Service_Address",
+                    "virtualAddress": "10.1.20.20"
+                }
+            }
+        },
+        "tenant_01": {
+            "class": "Tenant",
+            "App_1": {
+                "class": "Application",
+                "template": "generic",
+            "app1_vs": {
+                "class": "Service_Generic",
+                "virtualAddresses": [
+                    {"use": "/Common/Shared/virt_addr_10_1_20_20"}
+                ],
+                "virtualPort": 3000,
+                "pool": "web3000_pool",
+                "profileHTTP": {"use": "http"}
+                },
+                "web3000_pool": {
+                    "class": "Pool",
+                    "monitors": [
+                        "http"
+                    ],
+                    "members": [
+                        {
+                            "shareNodes": true,
+                            "servicePort": 3000,
+                            "serverAddresses": [
+                                "10.1.10.5",
+                                "10.1.10.10"
+                            ]
+                        }
+                    ]
+                }
+            },
+  "App_2": {
+    "class": "Application",
+    "template": "http",
+    "serviceMain": {
+    "class": "Service_HTTP",
+          "virtualAddresses": [
+              {"use": "/Common/Shared/virt_addr_10_1_20_20"}
+          ],
+          "virtualPort": 8080,
+          "policyEndpoint": "forward_policy",
+          "pool": "blue_pool",
+          "persistenceMethods": []
+    },
+    "blue_pool": {
+    "class": "Pool",
+    "monitors": [
+      "http"
+    ],
+    "members": [{
+            "shareNodes":true,
+      "servicePort": 8080,
+      "serverAddresses": [
+      "10.1.10.5",
+      "10.1.10.10"
+      ]
+    }]
+    },
+    "green_pool": {
+        "class": "Pool",
+        "monitors": [
+          "http"
+        ],
+        "members": [{
+                "shareNodes":true,
+          "servicePort": 80,
+          "serverAddresses": [
+          "10.1.10.5",
+          "10.1.10.10"
+          ]
+        }]
+    },
+    "forward_policy": {
+        "class": "Endpoint_Policy",
+        "rules": [{
+          "name": "forward_to_pool",
+          "conditions": [{
+            "type": "httpUri",
+            "path": {
+              "operand": "contains",
+              "values": ["about"]
+            }
+          }],
+          "actions": [{
+            "type": "forward",
+            "event": "request",
+            "select": {
+              "pool": {
+                "use": "green_pool"
+              }
+            }
+          }]
+        }]
+      }   
+  }
+}
+}
+}

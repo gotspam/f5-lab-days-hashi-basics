@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy App Services via AS3"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
+  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Deploy Canary Test Policy" href="lab2.html" />
-    <link rel="prev" title="Declarative BIG-IP Administration with AS3" href="module.html" /> 
+    <link rel="prev" title="Lab 2 - Declarative BIG-IP Administration with AS3" href="module.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
 
@@ -75,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../class1.html">F5 Automation With Terraform</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../module1/module.html">Basic BIG-IP Administration with Terraform</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="module.html">Declarative BIG-IP Administration with AS3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Use Terraform and AS3 to enable DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module1/module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Lab 3 - Use Terraform and AS3 to enable DevSecOps</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@
         <h5>
             <a href="../../index.html">F5 And Hashicorp Basics</a>
               &gt; <a href="../class1.html">F5 Automation With Terraform</a>
-              &gt; <a href="module.html">Declarative BIG-IP Administration with AS3</a>
+              &gt; <a href="module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a>
 
           <span class="right">
              <a href="../../_sources/class1/module2/lab1.rst.txt" rel="nofollow">Source</a> |
@@ -235,11 +235,11 @@
                 <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                     <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
                 <span class="p">],</span>
-                <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
-                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web8080_pool&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web3000_pool&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;profileHTTP&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">}</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;web8080_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;web3000_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="s2">&quot;http&quot;</span>
@@ -247,7 +247,7 @@
                     <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-                            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+                            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
                             <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                                 <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;10.1.10.10&quot;</span>
@@ -268,6 +268,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
+<a class="reference internal image-reference" href="../../_images/l2init.png"><img alt="../../_images/l2init.png" src="../../_images/l2init.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
@@ -313,11 +314,11 @@
                 <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                     <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
                 <span class="p">],</span>
-                <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
-                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web8080_pool&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web3000_pool&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;profileHTTP&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">}</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;web8080_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;web3000_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="s2">&quot;http&quot;</span>
@@ -325,7 +326,7 @@
                     <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-                            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+                            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
                             <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                                 <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;10.1.10.10&quot;</span>
@@ -336,23 +337,24 @@
             <span class="p">},</span>
   <span class="s2">&quot;App_2&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;app2_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Generic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTP&quot;</span><span class="p">,</span>
           <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
               <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
           <span class="p">],</span>
-          <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
-          <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web_pool&quot;</span>
+          <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+          <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web8080_pool&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;persistenceMethods&quot;</span><span class="p">:</span> <span class="p">[]</span>
     <span class="p">},</span>
-    <span class="s2">&quot;web_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;web8080_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
     <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="s2">&quot;http&quot;</span>
     <span class="p">],</span>
     <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
             <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
-      <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+      <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
       <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
       <span class="s2">&quot;10.1.10.10&quot;</span>
@@ -403,7 +405,7 @@
      <div class="row next-prev-btn-row">
        <div class="col-lg-12">
        
-        <a href="module.html" title="Declarative BIG-IP Administration with AS3" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
+        <a href="module.html" title="Lab 2 - Declarative BIG-IP Administration with AS3" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
           <a href="lab2.html" title="Deploy Canary Test Policy" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>

@@ -14,7 +14,7 @@
   <meta name="title" content="BIG-IP App Services Configuration"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
+  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -75,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../class1.html">F5 Automation With Terraform</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="module.html">Basic BIG-IP Administration with Terraform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Declarative BIG-IP Administration with AS3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Use Terraform and AS3 to enable DevSecOps</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Lab 3 - Use Terraform and AS3 to enable DevSecOps</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@
         <h5>
             <a href="../../index.html">F5 And Hashicorp Basics</a>
               &gt; <a href="../class1.html">F5 Automation With Terraform</a>
-              &gt; <a href="module.html">Basic BIG-IP Administration with Terraform</a>
+              &gt; <a href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a>
 
           <span class="right">
              <a href="../../_sources/class1/module1/lab2.rst.txt" rel="nofollow">Source</a> |
@@ -141,61 +141,9 @@
         
   <div class="section" id="big-ip-app-services-configuration">
 <h1>BIG-IP App Services Configuration<a class="headerlink" href="#big-ip-app-services-configuration" title="Permalink to this headline">¶</a></h1>
+<p>In this section you will configure basic application delivery services such as nodes, pools, pool members and virtual servers.</p>
 <ol class="arabic">
-<li><p class="first">Confirm BIG-IP is not configured</p>
-<ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to validate no app services</li>
-</ul>
-</li>
-<li><p class="first">Create main.tf to use terraform bigip provider</p>
-<ul class="simple">
-<li>Open client server vscode termninal</li>
-<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab1b</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab1b</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">main.tf</span></code></li>
-<li>use vscode to add the following code to <strong>main.tf</strong></li>
-</ul>
-<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">terraform</span> <span class="p">{</span>
-  <span class="n">required_providers</span> <span class="p">{</span>
-    <span class="n">bigip</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;F5Networks/bigip&quot;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">provider</span> <span class="s2">&quot;bigip&quot;</span> <span class="p">{</span>
-    <span class="n">address</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">address</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">username</span>
-    <span class="n">password</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">password</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create variables.tf</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">variables.tf</span></code></li>
-<li>use vscode to add the following code to <strong>variables.tf</strong></li>
-</ul>
-<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="s2">&quot;address&quot;</span> <span class="p">{}</span>
-<span class="n">variable</span> <span class="s2">&quot;username&quot;</span> <span class="p">{}</span>
-<span class="n">variable</span> <span class="s2">&quot;password&quot;</span> <span class="p">{}</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create terraform.tfvars</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">terraform.tfvars</span></code></li>
-<li>use vscode to add the following code to <strong>terraform.tfvars</strong></li>
-</ul>
-<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;10.1.1.6&quot;</span>
-<span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;F5d3vops$&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create app1.tf</p>
+<li><p class="first">Create <strong>app1.tf</strong></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app1.tf</span></code></li>
 <li>use vscode to add the following code to <strong>app1.tf</strong></li>
@@ -251,7 +199,7 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local Traffic -&gt; Network Map to view app1 services</li>
+<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/app1.png"><img alt="../../_images/app1.png" src="../../_images/app1.png" style="height: 300px;" /></a>
 </li>

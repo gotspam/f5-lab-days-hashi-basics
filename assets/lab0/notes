@@ -1,9 +1,10 @@
 app server notes:
 docker run --restart unless-stopped -d -p 3000:3000 bkimminich/juice-shop
-docker run --restart unless-stopped -d -p 3030:3000 bkimminich/juice-shop
+docker run --restart unless-stopped -d -p 3001:3000 bkimminich/juice-shop
 
-docker run -P -p 0.0.0.0:8080:80/tcp -d --restart unless-stopped nginxdemos/hello 
-docker run -P -p 0.0.0.0:8000:80/tcp -d --restart unless-stopped nginxdemos/hello 
+sudo docker run -P -p 0.0.0.0:8080:80/tcp -d --restart unless-stopped nginxdemos/hello 
+sudo docker run -P -p 0.0.0.0:8081:80/tcp -d --restart unless-stopped nginxdemos/hello 
+sudo docker run -P -p 0.0.0.0:8082:80/tcp -d --restart unless-stopped nginxdemos/hello 
 
 Begin Lab Notes
 
@@ -20,11 +21,11 @@ rm go1.15.linux-amd64.tar.gz
 
 https://github.com/F5Networks/terraform-provider-bigip
 Install Terraform
-wget --quiet --continue --show-progress  https://releases.hashicorp.com/terraform/0.13.0/terraform_0.13.0_freebsd_amd64.zip
-sudo unzip terraform_0.13.0_freebsd_amd64.zip
+wget --quiet --continue --show-progress  https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip
+sudo unzip terraform_0.13.2_linux_amd64.zip
 sudo mv terraform /usr/local/bin
 terraform -version
-rm terraform_0.13.0_freebsd_amd64.zip
+rm terraform_0.13.2_linux_amd64.zip
 
 
 BIG-IP Terraform Provider

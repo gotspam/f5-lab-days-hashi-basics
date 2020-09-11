@@ -23,8 +23,8 @@
        "class": "Tenant",
        "App_3": {
              "class": "Application",
-             "template": "https",
-             "serviceMain": {
+             "template": "generic",
+             "app3_vs": {
              "class": "Service_HTTPS",
              "virtualAddresses": [
                 {"use": "/Common/Shared/virt_addr_10_1_20_20"}

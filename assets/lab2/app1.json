@@ -29,11 +29,11 @@
                 "virtualAddresses": [
                     {"use": "/Common/Shared/virt_addr_10_1_20_20"}
                 ],
-                "virtualPort": 8080,
-                "pool": "web8080_pool",
+                "virtualPort": 3000,
+                "pool": "web3000_pool",
                 "profileHTTP": {"use": "http"}
                 },
-                "web8080_pool": {
+                "web3000_pool": {
                     "class": "Pool",
                     "monitors": [
                         "http"
@@ -41,7 +41,7 @@
                     "members": [
                         {
                             "shareNodes": true,
-                            "servicePort": 8080,
+                            "servicePort": 3000,
                             "serverAddresses": [
                                 "10.1.10.5",
                                 "10.1.10.10"

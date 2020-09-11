@@ -14,7 +14,7 @@
   <meta name="title" content="BIG-IP Infrastructure Onboarding"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
+  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="BIG-IP App Services Configuration" href="lab2.html" />
-    <link rel="prev" title="Basic BIG-IP Administration with Terraform" href="module.html" /> 
+    <link rel="prev" title="Lab 1 - Basic BIG-IP Administration with Terraform" href="module.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
 
@@ -75,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../class1.html">F5 Automation With Terraform</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="module.html">Basic BIG-IP Administration with Terraform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Declarative BIG-IP Administration with AS3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Use Terraform and AS3 to enable DevSecOps</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Lab 3 - Use Terraform and AS3 to enable DevSecOps</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@
         <h5>
             <a href="../../index.html">F5 And Hashicorp Basics</a>
               &gt; <a href="../class1.html">F5 Automation With Terraform</a>
-              &gt; <a href="module.html">Basic BIG-IP Administration with Terraform</a>
+              &gt; <a href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a>
 
           <span class="right">
              <a href="../../_sources/class1/module1/lab1.rst.txt" rel="nofollow">Source</a> |
@@ -146,15 +146,17 @@
 <li><p class="first">Confirm BIG-IP is not configured with basic network configurations.</p>
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
+<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>) admin : F5d3vops$</li>
 <li>Explore <strong>Network SelfIP</strong> and <strong>Vlan</strong> settings are not configured</li>
 </ul>
+<a class="reference internal image-reference" href="../../_images/selfip0.png"><img alt="../../_images/selfip0.png" src="../../_images/selfip0.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="../../_images/vlan0.png"><img alt="../../_images/vlan0.png" src="../../_images/vlan0.png" style="height: 150px;" /></a>
 </li>
 <li><p class="first">Create <strong>main.tf</strong> to use the <a class="reference external" href="https://registry.terraform.io/providers/F5Networks/bigip/latest/docs">[Terraform Provider for F5 BIG-IP]</a></p>
 <ul class="simple">
 <li>Open client server <strong>vscode termninal</strong></li>
-<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab1a</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab1a</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab1</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab1</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">main.tf</span></code></li>
 <li>use vscode to add the following code to <strong>main.tf</strong></li>
 </ul>
@@ -182,16 +184,25 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/maintf.png"><img alt="../../_images/maintf.png" src="../../_images/maintf.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Test terraform connectivity to bigip</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span>&#160; <span class="pre">init</span></code></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/tinit.png"><img alt="../../_images/tinit.png" src="../../_images/tinit.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="https://www.terraform.io/docs/commands/init.html">terraform init</a> command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.</p>
+</div>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/tplan.png"><img alt="../../_images/tplan.png" src="../../_images/tplan.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="https://www.terraform.io/docs/commands/plan.html">terraform plan</a> command is used to create an execution plan. Terraform performs a refresh, unless explicitly disabled, and then determines what actions are necessary to achieve the desired state specified in the configuration files.</p>
+</div>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code></li>
 </ul>
@@ -199,11 +210,15 @@
 <ul class="simple">
 <li>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> to approve action when prompted</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The  <a class="reference external" href="https://www.terraform.io/docs/commands/apply.html">terraform apply</a> command is used to apply the changes required to reach the desired state of the configuration, or the pre-determined set of actions generated by a terraform plan execution plan.</p>
+</div>
 </li>
 <li><p class="first">Create <strong>f5base.tf</strong> to configure base bigip network (NTP, DNS, VLANS and SELFIPs)</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">f5base.tf</span></code></li>
-<li>use vscode to add the following code to <strong>f5base.tf</strong></li>
+<li>use <strong>vscode</strong> to add the following code to <strong>f5base.tf</strong></li>
 </ul>
 <div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span> <span class="s2">&quot;bigip_sys_ntp&quot;</span> <span class="s2">&quot;ntp1&quot;</span> <span class="p">{</span>
   <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;/Common/NTP1&quot;</span>
@@ -253,6 +268,11 @@
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code></li>
 </ul>
+<a class="reference internal image-reference" href="../../_images/f5base.png"><img alt="../../_images/f5base.png" src="../../_images/f5base.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The  <strong>bigip terraform provider</strong> contains native resources to help facilitate provisioning services on BIG-IPs.  For example <a class="reference external" href="https://registry.terraform.io/providers/F5Networks/bigip/latest/docs/resources/bigip_sys_ntp">bigip_sys_ntp</a> resource is helpful when configuring NTP server on the BIG-IP.</p>
+</div>
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
@@ -272,7 +292,7 @@
      <div class="row next-prev-btn-row">
        <div class="col-lg-12">
        
-        <a href="module.html" title="Basic BIG-IP Administration with Terraform" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
+        <a href="module.html" title="Lab 1 - Basic BIG-IP Administration with Terraform" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
           <a href="lab2.html" title="BIG-IP App Services Configuration" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>

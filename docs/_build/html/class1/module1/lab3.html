@@ -14,7 +14,7 @@
   <meta name="title" content="Modify and Destroy App Services Configuration"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
+  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -53,7 +53,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Declarative BIG-IP Administration with AS3" href="../module2/module.html" />
+    <link rel="next" title="BIG-IP Onboarding wtih DO (Declarative Onbarding)" href="lab4.html" />
     <link rel="prev" title="BIG-IP App Services Configuration" href="lab2.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
@@ -75,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../class1.html">F5 Automation With Terraform</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="module.html">Basic BIG-IP Administration with Terraform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Declarative BIG-IP Administration with AS3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Use Terraform and AS3 to enable DevSecOps</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module2/module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Lab 3 - Use Terraform and AS3 to enable DevSecOps</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@
         <h5>
             <a href="../../index.html">F5 And Hashicorp Basics</a>
               &gt; <a href="../class1.html">F5 Automation With Terraform</a>
-              &gt; <a href="module.html">Basic BIG-IP Administration with Terraform</a>
+              &gt; <a href="module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a>
 
           <span class="right">
              <a href="../../_sources/class1/module1/lab3.rst.txt" rel="nofollow">Source</a> |
@@ -141,12 +141,7 @@
         
   <div class="section" id="modify-and-destroy-app-services-configuration">
 <h1>Modify and Destroy App Services Configuration<a class="headerlink" href="#modify-and-destroy-app-services-configuration" title="Permalink to this headline">¶</a></h1>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<ul class="last simple">
-<li>Estimated completion time: 20 minutes</li>
-</ul>
-</div>
+<p>In this section you will conduct basic add and delete administration using terraform</p>
 <ol class="arabic">
 <li><p class="first">Add 2nd Pool Member to service App1</p>
 <ul class="simple">
@@ -173,7 +168,11 @@
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/tapply.png"><img alt="../../_images/tapply.png" src="../../_images/tapply.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/t1apply.png"><img alt="../../_images/t1apply.png" src="../../_images/t1apply.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The apply will most likely result with and error due to resource dependencies.  If so, you may simply run <strong>terraform apply</strong> again. However I recommend you resolve the dependencies as hinted in the previous step to ensure consistency.</p>
+</div>
 </li>
 <li><p class="first">Confirm <strong>app1_pool</strong> now contains 2 pool members</p>
 <ul class="simple">
@@ -183,17 +182,33 @@
 </ul>
 <a class="reference internal image-reference" href="../../_images/app1w2pool.png"><img alt="../../_images/app1w2pool.png" src="../../_images/app1w2pool.png" style="height: 300px;" /></a>
 </li>
-<li><p class="first">Destroy App1 services</p>
+<li><p class="first">Destroy <strong>app1_vs</strong> resource</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">destroy</span> <span class="pre">-auto-approve</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">destroy</span> <span class="pre">-target=bigip_ltm_virtual_server.http</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/destroy.png"><img alt="../../_images/destroy.png" src="../../_images/destroy.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/vsdestroy.png"><img alt="../../_images/vsdestroy.png" src="../../_images/vsdestroy.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Confirm App1 services no longer exist</p>
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view no app services</li>
+<li>Explore <strong>Local Traffic -&gt; Virtual Servers, Pools and Nodes</strong></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/vs.png"><img alt="../../_images/vs.png" src="../../_images/vs.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="../../_images/pool.png"><img alt="../../_images/pool.png" src="../../_images/pool.png" style="height: 160px;" /></a>
+<a class="reference internal image-reference" href="../../_images/node.png"><img alt="../../_images/node.png" src="../../_images/node.png" style="height: 150px;" /></a>
+</li>
+<li><p class="first">Destroy all services</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">destroy</span> <span class="pre">-auto-approve</span></code></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/destroy.png"><img alt="../../_images/destroy.png" src="../../_images/destroy.png" style="height: 300px;" /></a>
+</li>
+<li><p class="first">Confirm all services no longer exist</p>
+<ul class="simple">
+<li>Open client server Firebox Browser</li>
+<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
+<li>Explore <strong>Local Traffic -&gt; Virtual Servers, Pools and Nodes</strong> to view no app services</li>
 </ul>
 </li>
 </ol>
@@ -208,7 +223,7 @@
         <a href="lab2.html" title="BIG-IP App Services Configuration" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
-          <a href="../module2/module.html" title="Declarative BIG-IP Administration with AS3" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+          <a href="lab4.html" title="BIG-IP Onboarding wtih DO (Declarative Onbarding)" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
        
      </div>
      </div>

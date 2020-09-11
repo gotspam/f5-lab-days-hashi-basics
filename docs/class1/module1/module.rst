@@ -1,10 +1,10 @@
-Basic BIG-IP Administration with Terraform
-==========================================
+Lab 1 - Basic BIG-IP Administration with Terraform
+==================================================
 
 You will walk through a typical device onboarding workflow to deploy base network and app services configurations
 
 .. important::
-   - Estimated completion time: 20 minutes
+   - Estimated completion time: 30 minutes
 
 Access Lab Environment
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -24,7 +24,12 @@ Access Lab Environment
 #. Open a **New Terminal** in **VS Code** to run commands in this lab
 
    .. image:: /_static/newterm.png
-      :scale: 35 %
+      :scale: 40 %
+
+#. Update **Terraform** in **VS Code** to version 13.x
+
+   .. image:: /_static/tfupdate.png
+      :scale: 40 %
 
 #. Under components, click the access dropdown on the **client ubuntu** server, then click **Firefox**
 

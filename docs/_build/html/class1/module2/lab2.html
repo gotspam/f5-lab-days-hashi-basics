@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy Canary Test Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-03 07:06:55"/>
+  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -53,7 +53,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Use Terraform and AS3 to enable DevSecOps" href="../module3/module.html" />
+    <link rel="next" title="Lab 3 - Use Terraform and AS3 to enable DevSecOps" href="../module3/module.html" />
     <link rel="prev" title="Deploy App Services via AS3" href="lab1.html" /> 
   </head><body>
   <div id="clouddocs-header"></div>
@@ -75,9 +75,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../class1.html">F5 Automation With Terraform</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../module1/module.html">Basic BIG-IP Administration with Terraform</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="module.html">Declarative BIG-IP Administration with AS3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Use Terraform and AS3 to enable DevSecOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module1/module.html">Lab 1 - Basic BIG-IP Administration with Terraform</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module3/module.html">Lab 3 - Use Terraform and AS3 to enable DevSecOps</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@
         <h5>
             <a href="../../index.html">F5 And Hashicorp Basics</a>
               &gt; <a href="../class1.html">F5 Automation With Terraform</a>
-              &gt; <a href="module.html">Declarative BIG-IP Administration with AS3</a>
+              &gt; <a href="module.html">Lab 2 - Declarative BIG-IP Administration with AS3</a>
 
           <span class="right">
              <a href="../../_sources/class1/module2/lab2.rst.txt" rel="nofollow">Source</a> |
@@ -141,6 +141,163 @@
         
   <div class="section" id="deploy-canary-test-policy">
 <h1>Deploy Canary Test Policy<a class="headerlink" href="#deploy-canary-test-policy" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first">Create app1b.json</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app1b.json</span></code></li>
+<li>use vscode to add the following code to <strong>app1b.json</strong></li>
+</ul>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;AS3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;deploy&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;persist&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;declaration&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ADC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;schemaVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;example-01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant 1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;Simple HTTP application with round robin pool&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Common&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Shared&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;shared&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;virt_addr_10_1_20_20&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Address&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;virtualAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.20.20&quot;</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;tenant_01&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;App_1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;app1_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Generic&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                      <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
+                  <span class="p">],</span>
+                  <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                  <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web3000_pool&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;profileHTTP&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">}</span>
+                  <span class="p">},</span>
+                  <span class="s2">&quot;web3000_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+                          <span class="s2">&quot;http&quot;</span>
+                      <span class="p">],</span>
+                      <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[</span>
+                          <span class="p">{</span>
+                              <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                              <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                              <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                  <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;10.1.10.10&quot;</span>
+                              <span class="p">]</span>
+                          <span class="p">}</span>
+                      <span class="p">]</span>
+                  <span class="p">}</span>
+              <span class="p">},</span>
+    <span class="s2">&quot;App_2&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTP&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+         <span class="s2">&quot;policyEndpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;forward_policy&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;blue_pool&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;persistenceMethods&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;blue_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;http&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+                <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;10.1.10.10&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;green_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;http&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+            <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;10.1.10.10&quot;</span>
+            <span class="p">]</span>
+        <span class="p">}]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;forward_policy&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Endpoint_Policy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rules&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;forward_to_pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;conditions&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;httpUri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;operand&quot;</span><span class="p">:</span> <span class="s2">&quot;contains&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;about&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}],</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;forward&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;select&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;green_pool&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Modify <strong>main.tf</strong> to use <strong>app1b.json</strong></p>
+<ul class="simple">
+<li>use vscode to replace <strong>app1a.json</strong> with <strong>app1b.json</strong></li>
+</ul>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span> <span class="s2">&quot;bigip_as3&quot;</span>  <span class="s2">&quot;tenant01_app1&quot;</span> <span class="p">{</span>
+   <span class="n">as3_json</span> <span class="o">=</span> <span class="s2">&quot;${file(&quot;</span><span class="n">app1b</span><span class="o">.</span><span class="n">json</span><span class="s2">&quot;)}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Redeploy App1 services with blue and green pools</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
+</ul>
+</li>
+<li><p class="first">Confirm BIG-IP is now configured with multiple apps</p>
+<ul class="simple">
+<li>Open client server Firebox Browser</li>
+<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
+<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app2</strong> associated with blue and green pools</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/canary.png"><img alt="../../_images/canary.png" src="../../_images/canary.png" style="height: 300px;" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Creating multiple versions of your as3 json files allows for quick rollback to previous version if issues occur.</p>
+</div>
+</li>
+</ol>
 </div>
 
 
@@ -152,7 +309,7 @@
         <a href="lab1.html" title="Deploy App Services via AS3" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
        
        
-          <a href="../module3/module.html" title="Use Terraform and AS3 to enable DevSecOps" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+          <a href="../module3/module.html" title="Lab 3 - Use Terraform and AS3 to enable DevSecOps" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
        
      </div>
      </div>

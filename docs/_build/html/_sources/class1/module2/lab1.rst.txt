@@ -95,11 +95,11 @@ Deploy App Services via AS3
                       "virtualAddresses": [
                           {"use": "/Common/Shared/virt_addr_10_1_20_20"}
                       ],
-                      "virtualPort": 8080,
-                      "pool": "web8080_pool",
+                      "virtualPort": 3000,
+                      "pool": "web3000_pool",
                       "profileHTTP": {"use": "http"}
                       },
-                      "web8080_pool": {
+                      "web3000_pool": {
                           "class": "Pool",
                           "monitors": [
                               "http"
@@ -107,7 +107,7 @@ Deploy App Services via AS3
                           "members": [
                               {
                                   "shareNodes": true,
-                                  "servicePort": 8080,
+                                  "servicePort": 3000,
                                   "serverAddresses": [
                                       "10.1.10.5",
                                       "10.1.10.10"
@@ -125,6 +125,9 @@ Deploy App Services via AS3
    - ``terraform  init``
    - ``terraform plan``
    - ``terraform apply -auto-approve``
+
+   .. image:: /_static/l2init.png
+       :height: 300px
 
 #. Confirm BIG-IP is now configured
 
@@ -173,11 +176,11 @@ Deploy App Services via AS3
                       "virtualAddresses": [
                           {"use": "/Common/Shared/virt_addr_10_1_20_20"}
                       ],
-                      "virtualPort": 8080,
-                      "pool": "web8080_pool",
+                      "virtualPort": 3000,
+                      "pool": "web3000_pool",
                       "profileHTTP": {"use": "http"}
                       },
-                      "web8080_pool": {
+                      "web3000_pool": {
                           "class": "Pool",
                           "monitors": [
                               "http"
@@ -185,7 +188,7 @@ Deploy App Services via AS3
                           "members": [
                               {
                                   "shareNodes": true,
-                                  "servicePort": 8080,
+                                  "servicePort": 3000,
                                   "serverAddresses": [
                                       "10.1.10.5",
                                       "10.1.10.10"
@@ -196,23 +199,24 @@ Deploy App Services via AS3
                   },
         "App_2": {
           "class": "Application",
-          "template": "generic",
-          "app2_vs": {
-          "class": "Service_Generic",
+          "template": "http",
+          "serviceMain": {
+          "class": "Service_HTTP",
                 "virtualAddresses": [
                     {"use": "/Common/Shared/virt_addr_10_1_20_20"}
                 ],
-                "virtualPort": 3000,
-                "pool": "web_pool"
+                "virtualPort": 8080,
+                "pool": "web8080_pool",
+                "persistenceMethods": []
           },
-          "web_pool": {
+          "web8080_pool": {
           "class": "Pool",
           "monitors": [
             "http"
           ],
           "members": [{
                   "shareNodes":true,
-            "servicePort": 3000,
+            "servicePort": 8080,
             "serverAddresses": [
             "10.1.10.5",
             "10.1.10.10"

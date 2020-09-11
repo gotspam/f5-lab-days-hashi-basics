@@ -1,8 +1,7 @@
 Modify and Destroy App Services Configuration
 #############################################
 
-.. important::
-   - Estimated completion time: 20 minutes
+In this section you will conduct basic add and delete administration using terraform
 
 #. Add 2nd Pool Member to service App1
 
@@ -28,8 +27,11 @@ Modify and Destroy App Services Configuration
    - ``terraform plan``
    - ``terraform apply -auto-approve``
 
-   .. image:: /_static/tapply.png
+   .. image:: /_static/t1apply.png
        :height: 300px
+
+   .. NOTE:: 
+      The apply will most likely result with and error due to resource dependencies.  If so, you may simply run **terraform apply** again. However I recommend you resolve the dependencies as hinted in the previous step to ensure consistency.
 
 #. Confirm **app1_pool** now contains 2 pool members
 
@@ -40,15 +42,37 @@ Modify and Destroy App Services Configuration
    .. image:: /_static/app1w2pool.png
        :height: 300px
 
-#. Destroy App1 services
+#. Destroy **app1_vs** resource
 
-   - ``terraform destroy -auto-approve``
+   - ``terraform destroy -target=bigip_ltm_virtual_server.http -auto-approve``
 
-   .. image:: /_static/destroy.png
+   .. image:: /_static/vsdestroy.png
        :height: 300px
 
 #. Confirm App1 services no longer exist
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view no app services
+   - Explore **Local Traffic -> Virtual Servers, Pools and Nodes**
+
+   .. image:: /_static/vs.png
+       :height: 150px
+
+   .. image:: /_static/pool.png
+       :height: 160px
+
+   .. image:: /_static/node.png
+       :height: 150px
+
+#. Destroy all services
+
+   - ``terraform destroy -auto-approve``
+
+   .. image:: /_static/destroy.png
+       :height: 300px
+
+#. Confirm all services no longer exist
+
+   - Open client server Firebox Browser
+   - Login to bigip (https://10.1.10.6)
+   - Explore **Local Traffic -> Virtual Servers, Pools and Nodes** to view no app services
