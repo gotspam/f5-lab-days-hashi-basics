@@ -1,6 +1,9 @@
 Deploy App Services via AS3
 ###########################
 
+In this section you will create a json declaration to deploy app services using AS3.
+
+
 #. Confirm BIG-IP is not configured
 
    - Open client server Firebox Browser

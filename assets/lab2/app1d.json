@@ -59,9 +59,10 @@
               {"use": "/Common/Shared/virt_addr_10_1_20_20"}
           ],
           "virtualPort": 8080,
-          "iRules": ["test_green_only"],
+          "iRules": ["go_green"],
           "policyEndpoint": "forward_policy",
-          "pool": "blue_pool"
+          "pool": "blue_pool",
+          "persistenceMethods": []
     },
     "blue_pool": {
     "class": "Pool",
@@ -70,7 +71,7 @@
     ],
     "members": [{
             "shareNodes":true,
-      "servicePort": 8000,
+      "servicePort": 8080,
       "serverAddresses": [
       "10.1.10.5",
       "10.1.10.10"
@@ -84,18 +85,16 @@
         ],
         "members": [{
                 "shareNodes":true,
-          "servicePort": 8080,
+          "servicePort": 8081,
           "serverAddresses": [
           "10.1.10.5",
           "10.1.10.10"
           ]
         }]
     },
-    "test_green_only": {
+    "go_green": {
       "class": "iRule",
-      "iRule": {
-      "url": "https://raw.githubusercontent.com/RuncibleSpoon/F5AppSvcDemo/master/scenarios/BlueGreen/irule.tcl"
-      }  
+      "iRule": "iRule": "when CLIENT_ACCEPTED {\nif { rand() < 0.30 } {\n pool `*green_pool`\n }\n}"
   },
     "forward_policy": {
         "class": "Endpoint_Policy",

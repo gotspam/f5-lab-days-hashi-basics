@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy Canary Test Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-11 07:55:24"/>
+  <meta name="updated_date"  content="2020-09-13 06:11:20"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -141,8 +141,9 @@
         
   <div class="section" id="deploy-canary-test-policy">
 <h1>Deploy Canary Test Policy<a class="headerlink" href="#deploy-canary-test-policy" title="Permalink to this headline">¶</a></h1>
+<p>In this section you will simulate canary testing by associating a forwarding policy as part the previous json declaration.  This policy will route canary traffic to an alternate pool when the specified uri condition is met.</p>
 <ol class="arabic">
-<li><p class="first">Create app1b.json</p>
+<li><p class="first">Create app1b.json to simulate canary testing</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app1b.json</span></code></li>
 <li>use vscode to add the following code to <strong>app1b.json</strong></li>
@@ -279,7 +280,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Redeploy App1 services with blue and green pools</p>
+<li><p class="first">Redeploy App1 services with canary forwarding policy associated</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
@@ -292,9 +293,205 @@
 <li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app2</strong> associated with blue and green pools</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/canary.png"><img alt="../../_images/canary.png" src="../../_images/canary.png" style="height: 300px;" /></a>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Creating multiple versions of your as3 json files allows for quick rollback to previous version if issues occur.</p>
+<ul class="simple">
+<li>Click on the expansion arrows next to <strong>serviceMain</strong> to view <strong>pool stats</strong> has 0 connections</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/canary0.png"><img alt="../../_images/canary0.png" src="../../_images/canary0.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  All traffic should be served by blue pool</li>
+</ul>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">this</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="ow">is</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">canary</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">test</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/canary1.png"><img alt="../../_images/canary1.png" src="../../_images/canary1.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  All traffic should be served by green pool</li>
+</ul>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">about</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">about</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/canary2.png"><img alt="../../_images/canary2.png" src="../../_images/canary2.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The forwarding policy associated with <strong>serviceMain</strong> matches <strong>/about</strong> uri and directs to green pool.</p>
+</div>
+</li>
+<li><p class="first">Create <strong>app1c.json</strong> and associate <strong>irule.tcl</strong> to simulate blue/green deployment</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app1c.json</span></code></li>
+<li>use vscode to add the following code to <strong>app1c.json</strong></li>
+</ul>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;AS3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;deploy&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;persist&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;declaration&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ADC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;schemaVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;example-01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant 1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;remark&quot;</span><span class="p">:</span> <span class="s2">&quot;Simple HTTP application with round robin pool&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Common&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;Shared&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;shared&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;virt_addr_10_1_20_20&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Address&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;virtualAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.20.20&quot;</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;tenant_01&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;App_1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;app1_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_Generic&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                      <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
+                  <span class="p">],</span>
+                  <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                  <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web3000_pool&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;profileHTTP&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">}</span>
+                  <span class="p">},</span>
+                  <span class="s2">&quot;web3000_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+                          <span class="s2">&quot;http&quot;</span>
+                      <span class="p">],</span>
+                      <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[</span>
+                          <span class="p">{</span>
+                              <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                              <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+                              <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                  <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;10.1.10.10&quot;</span>
+                              <span class="p">]</span>
+                          <span class="p">}</span>
+                      <span class="p">]</span>
+                  <span class="p">}</span>
+              <span class="p">},</span>
+    <span class="s2">&quot;App_2&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTP&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;virtualPort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+         <span class="s2">&quot;iRules&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;go_green&quot;</span><span class="p">],</span>
+         <span class="s2">&quot;policyEndpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;forward_policy&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;blue_pool&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;persistenceMethods&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;blue_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;http&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+                <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;10.1.10.10&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;green_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;http&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;members&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;shareNodes&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+            <span class="s2">&quot;servicePort&quot;</span><span class="p">:</span> <span class="mi">8081</span><span class="p">,</span>
+            <span class="s2">&quot;serverAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;10.1.10.5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;10.1.10.10&quot;</span>
+            <span class="p">]</span>
+        <span class="p">}]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;go_green&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;iRule&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;iRule&quot;</span><span class="p">:</span> <span class="s2">&quot;when CLIENT_ACCEPTED {</span><span class="se">\n</span><span class="s2">if { rand() &lt; 0.30 } {</span><span class="se">\n</span><span class="s2"> pool `*green_pool`</span><span class="se">\n</span><span class="s2"> }</span><span class="se">\n</span><span class="s2">}&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;forward_policy&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Endpoint_Policy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rules&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;forward_to_pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;conditions&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;httpUri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;operand&quot;</span><span class="p">:</span> <span class="s2">&quot;contains&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;about&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}],</span>
+        <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;forward&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;select&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;green_pool&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Modify <strong>main.tf</strong> to use <strong>app1c.json</strong></p>
+<ul class="simple">
+<li>use vscode to replace <strong>app1b.json</strong> with <strong>app1c.json</strong></li>
+</ul>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span> <span class="s2">&quot;bigip_as3&quot;</span>  <span class="s2">&quot;tenant01_app1&quot;</span> <span class="p">{</span>
+   <span class="n">as3_json</span> <span class="o">=</span> <span class="s2">&quot;${file(&quot;</span><span class="n">app1c</span><span class="o">.</span><span class="n">json</span><span class="s2">&quot;)}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Redeploy App1 services with irule.tcl associated</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
+</ul>
+</li>
+<li><p class="first">Confirm <strong>serviceMain</strong> is now assigned <strong>go_green</strong> irule.</p>
+<ul class="simple">
+<li>Open client server Firebox Browser</li>
+<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
+<li>Reset <strong>Local Traffic -&gt; Pools -&gt; Statistics</strong> to clear stats</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/poolreset.png"><img alt="../../_images/poolreset.png" src="../../_images/poolreset.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  Approx 30% of traffic will be directed to green pool.</li>
+</ul>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
+<span class="n">do</span>
+  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">this</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="ow">is</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">canary</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">test</span> <span class="o">|</span> <span class="n">grep</span> <span class="mf">172.17</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">done</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <strong>go_green</strong> irule associated with <strong>serviceMain</strong> randomizes approximately 30% traffic to the green pool.</p>
 </div>
 </li>
 </ol>
