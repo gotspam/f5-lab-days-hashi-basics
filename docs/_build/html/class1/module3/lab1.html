@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-13 06:11:20"/>
+  <meta name="updated_date"  content="2020-09-14 02:49:59"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -228,19 +228,19 @@
       <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">,</span>
       <span class="s2">&quot;App_3&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Application&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;generic&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;app3_vs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;serviceMain&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Service_HTTPS&quot;</span><span class="p">,</span>
             <span class="s2">&quot;virtualAddresses&quot;</span><span class="p">:</span> <span class="p">[</span>
                <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;/Common/Shared/virt_addr_10_1_20_20&quot;</span><span class="p">}</span>
            <span class="p">],</span>
-            <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;web_pool&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;policyWAF&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;My_AWAF_Policy&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;pool&quot;</span><span class="p">:</span> <span class="s2">&quot;juice_pool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;policyWAF&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;juice_awaf&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;securityLogProfiles&quot;</span><span class="p">:</span> <span class="p">[{</span> <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="s2">&quot;secLogLocal&quot;</span><span class="p">}],</span>
             <span class="s2">&quot;serverTLS&quot;</span><span class="p">:</span> <span class="s2">&quot;webtls&quot;</span>
             <span class="p">},</span>
-            <span class="s2">&quot;web_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;juice_pool&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Pool&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;loadBalancingMode&quot;</span><span class="p">:</span> <span class="s2">&quot;predictive-node&quot;</span><span class="p">,</span>
             <span class="s2">&quot;monitors&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&quot;http&quot;</span>
             <span class="p">],</span>
@@ -264,12 +264,38 @@
             <span class="s2">&quot;certificate&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bigip&quot;</span><span class="p">:</span><span class="s2">&quot;/Common/default.crt&quot;</span><span class="p">},</span>
             <span class="s2">&quot;privateKey&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bigip&quot;</span><span class="p">:</span><span class="s2">&quot;/Common/default.key&quot;</span><span class="p">}</span>
             <span class="p">},</span>
-            <span class="s2">&quot;My_AWAF_Policy&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;juice_awaf&quot;</span><span class="p">:</span> <span class="p">{</span>
                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;WAF_Policy&quot;</span><span class="p">,</span>
                <span class="s2">&quot;ignoreChanges&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/scshitole/more-terraform/master/Sample_app_sec_02_waf_policy.xml&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;secLogLocal&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Security_Log_Profile&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;application&quot;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s2">&quot;storageFilter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                       <span class="s2">&quot;logicalOperation&quot;</span><span class="p">:</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;requestType&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;responseCodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+                           <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;200&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;300&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;400&quot;</span>
+                       <span class="p">],</span>
+                       <span class="s2">&quot;protocols&quot;</span><span class="p">:</span> <span class="p">[</span>
+                           <span class="s2">&quot;https&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;http&quot;</span>
+                       <span class="p">],</span>
+                       <span class="s2">&quot;httpMethods&quot;</span><span class="p">:</span> <span class="p">[</span>
+                           <span class="s2">&quot;ACL&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;POLL&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;POST&quot;</span>
+                       <span class="p">]</span>
+                   <span class="p">}</span>
+               <span class="p">}</span>
             <span class="p">}</span>
-        <span class="p">}</span>
+         <span class="p">}</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -287,13 +313,37 @@
 <ul class="simple">
 <li>Open client server Firebox Browser</li>
 <li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore Local <strong>Traffic -&gt; Network Map</strong> to view tenant02 app3 services</li>
+<li>Explore Local <strong>Traffic -&gt; Network Map</strong> to view <strong>tenant02 serviceMain</strong> services</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/app3nmap.png"><img alt="../../_images/app3nmap.png" src="../../_images/app3nmap.png" style="height: 300px;" /></a>
 <ul class="simple">
-<li>Click <strong>app3_vs</strong> to view details of <strong>tenant02 app3</strong> services and note a WAF Policy associated</li>
+<li>Click <strong>serviceMain</strong> to view details of <strong>tenant02 serviceMain</strong> services and note a WAF Policy associated</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/app3detail.png"><img alt="../../_images/app3detail.png" src="../../_images/app3detail.png" style="height: 300px;" /></a>
+</li>
+<li><p class="first">Confirm <strong>serviceMain</strong> is serving up <strong>juiceshop app</strong></p>
+<ul class="simple">
+<li>Open new tab on client server Firebox Browser</li>
+<li>Browse to bigip (<a class="reference external" href="https://10.1.20.20">https://10.1.20.20</a>)</li>
+<li>Click advanced and accept risk</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/juice.png"><img alt="../../_images/juice.png" src="../../_images/juice.png" style="height: 300px;" /></a>
+</li>
+<li><p class="first">Test sql injection attack</p>
+<ul class="simple">
+<li>Click <strong>Account -&gt; Login</strong> and enter <code class="docutils literal notranslate"><span class="pre">'or</span> <span class="pre">1==1</span> <span class="pre">--</span></code> for email address</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/login.png"><img alt="../../_images/login.png" src="../../_images/login.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>You should receive an error which is typical of poor error handling but at least login was protected.</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/blklogin.png"><img alt="../../_images/blklogin.png" src="../../_images/blklogin.png" style="height: 300px;" /></a>
+</li>
+<li><p class="first">Test sql injection on unprotected <strong>juiceshop</strong> (<a class="reference external" href="http://10.1.20.20:3000">http://10.1.20.20:3000</a>)</p>
+<ul class="simple">
+<li>Repeat same steps as previous attack</li>
+<li>You should receive a message that you’ve successfully solved a challenge</li>
+</ul>
 </li>
 </ol>
 </div>

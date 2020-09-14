@@ -89,19 +89,19 @@ Deploy AS3 WAF Policy
             "class": "Tenant",
             "App_3": {
                   "class": "Application",
-                  "template": "generic",
-                  "app3_vs": {
+                  "template": "https",
+                  "serviceMain": {
                   "class": "Service_HTTPS",
                   "virtualAddresses": [
                      {"use": "/Common/Shared/virt_addr_10_1_20_20"}
                  ],
-                  "pool": "web_pool",
-                  "policyWAF": {"use": "My_AWAF_Policy"},
+                  "pool": "juice_pool",
+                  "policyWAF": {"use": "juice_awaf"},
+                  "securityLogProfiles": [{ "use": "secLogLocal"}],
                   "serverTLS": "webtls"
                   },
-                  "web_pool": {
+                  "juice_pool": {
                   "class": "Pool",
-                  "loadBalancingMode": "predictive-node",
                   "monitors": [
                   "http"
                   ],
@@ -125,12 +125,38 @@ Deploy AS3 WAF Policy
                   "certificate": {"bigip":"/Common/default.crt"},
                   "privateKey": {"bigip":"/Common/default.key"}
                   },
-                  "My_AWAF_Policy": {
+                  "juice_awaf": {
                      "class": "WAF_Policy",
                      "ignoreChanges": false,
                      "url": "https://raw.githubusercontent.com/scshitole/more-terraform/master/Sample_app_sec_02_waf_policy.xml"
+                  },
+                  "secLogLocal": {
+                     "class": "Security_Log_Profile",
+                     "application": {
+                         "storageFilter": {
+                             "logicalOperation": "and",
+                             "requestType": "all",
+                             "responseCodes": [
+                                 "100",
+                                 "200",
+                                 "300",
+                                 "400"
+                             ],
+                             "protocols": [
+                                 "https",
+                                 "ws",
+                                 "http"
+                             ],
+                             "httpMethods": [
+                                 "ACL",
+                                 "GET",
+                                 "POLL",
+                                 "POST"
+                             ]
+                         }
+                     }
                   }
-              }
+               }
             }
          }
       }
@@ -145,12 +171,40 @@ Deploy AS3 WAF Policy
 
    - Open client server Firebox Browser
    - Login to bigip (https://10.1.10.6)
-   - Explore Local **Traffic -> Network Map** to view tenant02 app3 services
+   - Explore Local **Traffic -> Network Map** to view **tenant02 serviceMain** services
 
    .. image:: /_static/app3nmap.png
        :height: 300px
 
-   - Click **app3_vs** to view details of **tenant02 app3** services and note a WAF Policy associated
+   - Click **serviceMain** to view details of **tenant02 serviceMain** services and note a WAF Policy associated
 
    .. image:: /_static/app3detail.png
        :height: 300px
+
+#. Confirm **serviceMain** is serving up **juiceshop app**
+
+   - Open new tab on client server Firebox Browser
+   - Browse to bigip (https://10.1.20.20)
+   - Click advanced and accept risk
+
+   .. image:: /_static/juice.png
+       :height: 300px
+
+#. Test sql injection attack
+
+   - Click **Account -> Login** and enter ``'or 1==1 --`` for email address
+
+   .. image:: /_static/login.png
+       :height: 300px
+
+   - You should receive an error which is typical of poor error handling but at least login was protected.
+
+   .. image:: /_static/blklogin.png
+       :height: 300px
+
+#. Test sql injection on unprotected **juiceshop** (http://10.1.20.20:3000)
+
+   - Repeat same steps as previous attack
+   - You should receive a message that you've successfully solved a challenge
+
+

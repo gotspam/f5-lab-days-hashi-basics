@@ -162,12 +162,15 @@ In this section you will simulate canary testing by associating a forwarding pol
    - Test connections to **serviceMain** app running the following curl commands.  All traffic should be served by blue pool
 
    .. code:: bash
-
-      curl -s http://10.1.20.20:8080/this | grep 172.17.0
-      curl -s http://10.1.20.20:8080/is | grep 172.17.0
-      curl -s http://10.1.20.20:8080/a | grep 172.17.0
-      curl -s http://10.1.20.20:8080/canary | grep 172.17.0
-      curl -s http://10.1.20.20:8080/test | grep 172.17.0
+   
+      for i in {1..5} 
+      do
+        curl -s http://10.1.20.20:8080/this | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/is | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/a | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/canary | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/test | grep -o "172.17.0.."
+      done
 
    .. image:: /_static/canary1.png
        :height: 300px
@@ -176,8 +179,11 @@ In this section you will simulate canary testing by associating a forwarding pol
 
    .. code:: bash
 
-      curl -s http://10.1.20.20:8080/about | grep 172.17.0
-      curl -s http://10.1.20.20:8080/about | grep 172.17.0
+         for i in {1..5} 
+      do
+        curl -s http://10.1.20.20:8080/about | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/about | grep -o "172.17.0.."
+      done
 
    .. image:: /_static/canary2.png
        :height: 300px
@@ -342,17 +348,17 @@ In this section you will simulate canary testing by associating a forwarding pol
    .. image:: /_static/poolreset.png
        :height: 300px
 
-   - Test connections to **serviceMain** app running the following curl commands.  Approx 30% of traffic will be directed to green pool.
+   - Test connections to **serviceMain** app running the following curl commands.  Approx 30% of traffic will be directed to the green pool (**172.17.0.5**) 
 
    .. code:: json
    
       for i in {1..5} 
       do
-        curl -s http://10.1.20.20:8080/this | grep 172.17.0
-        curl -s http://10.1.20.20:8080/is | grep 172.17.0
-        curl -s http://10.1.20.20:8080/a | grep 172.17.0
-        curl -s http://10.1.20.20:8080/canary | grep 172.17.0
-        curl -s http://10.1.20.20:8080/test | grep 172.17.0
+        curl -s http://10.1.20.20:8080/this | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/is | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/a | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/canary | grep -o "172.17.0.."
+        curl -s http://10.1.20.20:8080/test | grep -o "172.17.0.."
       done
 
    .. NOTE:: 

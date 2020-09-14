@@ -68,6 +68,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
 
    .. NOTE::
       The `terraform plan <https://www.terraform.io/docs/commands/plan.html>`__ command is used to create an execution plan. Terraform performs a refresh, unless explicitly disabled, and then determines what actions are necessary to achieve the desired state specified in the configuration files.
+   
    - ``terraform apply``
 
    .. image:: /_static/tapply.png
