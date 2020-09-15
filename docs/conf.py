@@ -8,7 +8,7 @@
 classname = "F5 And Hashicorp Basics"
 
 # OPTIONAL: The URL to the GitHub Repository for this class
-github_repo = "https://github.com/gotspam/f5-lab-days-hasi-basics"
+github_repo = "https://github.com/gotspam/f5-lab-days-hashi-basics"
 
 # OPTIONAL: Google Analytics
 # googleanalytics_id = 'UA-85156643-4'
