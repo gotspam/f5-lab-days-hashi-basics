@@ -3,6 +3,16 @@ BIG-IP Infrastructure Onboarding
 
 In this section you will configure basic network configurations like NTP, DNS, and interface IP addresses.
 
+#. Confirm BIG-IP is not configured with basic network configurations.
+
+   - Explore BIG-IP GUI **Network SelfIP** and **Vlan** settings and validate they are not configured
+
+   .. image:: /_static/selfip0.png
+       :height: 150px
+
+   .. image:: /_static/vlan0.png
+       :height: 150px
+
 #. Create **main.tf** to use the `[Terraform Provider for F5 BIG-IP] <https://registry.terraform.io/providers/F5Networks/bigip/latest/docs>`__
 
    - Open client server **vscode terminal**

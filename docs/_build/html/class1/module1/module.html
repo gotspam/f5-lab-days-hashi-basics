@@ -14,7 +14,7 @@
   <meta name="title" content="Lab 1 - Basic BIG-IP Administration with Terraform"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-16 05:05:21"/>
+  <meta name="updated_date"  content="2020-09-16 05:19:39"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -194,53 +194,6 @@
 </div>
 <a class="reference internal image-reference" href="../../_images/clipboard.png"><img alt="../../_images/clipboard.png" src="../../_images/clipboard.png" style="width: 464.0px; height: 168.0px;" /></a>
 <a class="reference internal image-reference" href="../../_images/paste.png"><img alt="../../_images/paste.png" src="../../_images/paste.png" style="width: 312.0px; height: 198.0px;" /></a>
-</li>
-<li><p class="first">Confirm BIG-IP is not configured with basic network configurations.</p>
-<ul class="simple">
-<li>Explore BIG-IP GUI <strong>Network SelfIP</strong> and <strong>Vlan</strong> settings and validate they are not configured</li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/selfip0.png"><img alt="../../_images/selfip0.png" src="../../_images/selfip0.png" style="height: 150px;" /></a>
-<a class="reference internal image-reference" href="../../_images/vlan0.png"><img alt="../../_images/vlan0.png" src="../../_images/vlan0.png" style="height: 150px;" /></a>
-<ul class="simple">
-<li>If configurations exist peform the following steps to refresh lab otherwise skip to next section</li>
-<li>Open client server <strong>vscode terminal</strong></li>
-<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab0</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab0</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">main.tf</span></code></li>
-<li>use vscode to add the following code to <strong>main.tf</strong></li>
-</ul>
-<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">terraform</span> <span class="p">{</span>
-<span class="n">required_providers</span> <span class="p">{</span>
-  <span class="n">bigip</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;F5Networks/bigip&quot;</span>
-    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.3.1&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">provider</span> <span class="s2">&quot;bigip&quot;</span> <span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;10.1.1.6&quot;</span>
-  <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
-  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;F5d3vops$&quot;</span>
-<span class="p">}</span>
-
-<span class="n">resource</span> <span class="s2">&quot;bigip_command&quot;</span> <span class="s2">&quot;cleanup&quot;</span> <span class="p">{</span>
-  <span class="n">commands</span>   <span class="o">=</span> <span class="p">[</span>
-  <span class="s2">&quot;delete ltm node all&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;delete net route all&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;delete net self all&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;delete net vlan all&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;save sys config&quot;</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">terraform</span>&#160; <span class="pre">init</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code></li>
-<li>Explore BIG-IP GUI <strong>Network SelfIP</strong> and <strong>Vlan</strong> settings and validate they are not configured</li>
-</ul>
 </li>
 </ol>
 <div class="toctree-wrapper compound">
