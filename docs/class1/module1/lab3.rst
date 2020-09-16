@@ -38,7 +38,7 @@ In this section you will conduct basic add and delete administration using terra
    - Explore BIG-IP GUI **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/app1w2pool.png
-       :height: 300px
+       :height: 150px
 
 #. Destroy **app1_vs** resource
 
