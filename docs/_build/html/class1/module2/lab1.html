@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy App Services via AS3"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-15 04:05:52"/>
+  <meta name="updated_date"  content="2020-09-16 06:21:54"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -145,9 +145,7 @@
 <ol class="arabic">
 <li><p class="first">Confirm BIG-IP is not configured</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to validate no app services</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Network Map</strong> to validate no app services</li>
 </ul>
 </li>
 <li><p class="first">Create <strong>main.tf</strong> to use terraform bigip provider</p>
@@ -273,9 +271,7 @@
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/tenant1.png"><img alt="../../_images/tenant1.png" src="../../_images/tenant1.png" style="height: 300px;" /></a>
 </li>
@@ -387,9 +383,7 @@
 </li>
 <li><p class="first">Confirm BIG-IP is now configured with multiple apps</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app1</strong> and <strong>app2</strong> services</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app1</strong> and <strong>app2</strong> services</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/tenant1a.png"><img alt="../../_images/tenant1a.png" src="../../_images/tenant1a.png" style="height: 300px;" /></a>
 <div class="admonition tip">

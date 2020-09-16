@@ -49,18 +49,15 @@ In this section you will configure basic application delivery services such as n
 
 #. Deploy App1 services
 
-   - ``terraform  init``
    - ``terraform plan``
    - ``terraform apply -auto-approve``
 
    .. image:: /_static/l1apply.png
-       :height: 150px
+       :height: 300px
 
 #. Confirm BIG-IP is now configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view app1 services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/app1.png
-       :height: 300px
+       :height: 150px

@@ -14,7 +14,7 @@
   <meta name="title" content="Lab 1 - Basic BIG-IP Administration with Terraform"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-15 04:05:52"/>
+  <meta name="updated_date"  content="2020-09-16 06:21:54"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -154,21 +154,46 @@
 <h2>Access Lab Environment<a class="headerlink" href="#access-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Log in to F5’s <a class="reference external" href="https://udf.f5.com">[Unified Demo Framework Portal]</a></p>
+<ul class="simple">
+<li>Select F5 or Non F5 User then enter credentials.</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/udf.png"><img alt="../../_images/udf.png" src="../../_images/udf.png" style="width: 224.0px; height: 166.5px;" /></a>
 </li>
-<li><p class="first">Deploy the <strong>DevOps Base</strong> blueprint</p>
-<a class="reference internal image-reference" href="../../_images/deploybp.png"><img alt="../../_images/deploybp.png" src="../../_images/deploybp.png" style="width: 261.6px; height: 146.4px;" /></a>
+<li><p class="first">Launch the <strong>Channel - F5 and Terraform Basics</strong> course</p>
+<a class="reference internal image-reference" href="../../_images/course.png"><img alt="../../_images/course.png" src="../../_images/course.png" style="width: 840.8000000000001px; height: 104.80000000000001px;" /></a>
 </li>
-<li><p class="first">Under components, click the access dropdown on the <strong>client ubuntu</strong> server, then click <strong>VS CODE</strong>.  We will use this for making edits to the terraform files.</p>
+<li><p class="first">Click <strong>Join</strong> course, then click <strong>Deployment</strong> to access your lab envirnment.</p>
+<a class="reference internal image-reference" href="../../_images/deployment.png"><img alt="../../_images/deployment.png" src="../../_images/deployment.png" style="width: 978.4000000000001px; height: 404.8px;" /></a>
+</li>
+<li><p class="first">Click the <strong>ACCESS</strong> dropdown on the <strong>client</strong> ubuntu server, then click <strong>VS CODE</strong>. We will use this for making edits to the terraform files</p>
 <a class="reference internal image-reference" href="../../_images/vscode.png"><img alt="../../_images/vscode.png" src="../../_images/vscode.png" style="width: 267.2px; height: 239.20000000000002px;" /></a>
 </li>
 <li><p class="first">Open a <strong>New Terminal</strong> in <strong>VS Code</strong> to run commands in this lab</p>
 <a class="reference internal image-reference" href="../../_images/newterm.png"><img alt="../../_images/newterm.png" src="../../_images/newterm.png" style="width: 276.40000000000003px; height: 128.4px;" /></a>
 </li>
 <li><p class="first">Update <strong>Terraform</strong> in <strong>VS Code</strong> to version 13.x</p>
+<ul class="simple">
+<li>run <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">-version</span></code> in <strong>VS Code terminal</strong> on bottom of window</li>
+<li>if terraform version is <strong>v0.13.2</strong> then <strong>skip to step 7</strong> else continue with upgrade process</li>
+<li><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">--quiet</span> <span class="pre">--continue</span> <span class="pre">--show-progress</span> <span class="pre">https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">unzip</span> <span class="pre">terraform_0.13.2_linux_amd64.zip</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mv</span> <span class="pre">terraform</span> <span class="pre">/usr/local/bin</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">-version</span></code> to confirm <strong>v0.13.2</strong></li>
+<li><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">terraform_0.13.2_linux_amd64.zip</span></code></li>
+</ul>
 <a class="reference internal image-reference" href="../../_images/tfupdate.png"><img alt="../../_images/tfupdate.png" src="../../_images/tfupdate.png" style="width: 1020.8000000000001px; height: 336.8px;" /></a>
 </li>
 <li><p class="first">Under components, click the access dropdown on the <strong>client ubuntu</strong> server, then click <strong>Firefox</strong></p>
-<a class="reference internal image-reference" href="../../_images/firefox.png"><img alt="../../_images/firefox.png" src="../../_images/firefox.png" style="width: 275.2px; height: 232.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/firefox.png"><img alt="../../_images/firefox.png" src="../../_images/firefox.png" style="width: 172.0px; height: 145.5px;" /></a>
+<a class="reference internal image-reference" href="../../_images/firefox1.png"><img alt="../../_images/firefox1.png" src="../../_images/firefox1.png" style="width: 257.0px; height: 178.5px;" /></a>
+</li>
+<li><p class="first">Login to BIG-IP management interface (<a class="reference external" href="https://10.1.1.6">https://10.1.1.6</a>) admin : F5d3vops</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ctrl+c and Ctrl+v does not work with the firefox web instance.  You must paste into firefox cliboard and submit, then rtclk paste to paste as shown in the images below</p>
+</div>
+<a class="reference internal image-reference" href="../../_images/clipboard.png"><img alt="../../_images/clipboard.png" src="../../_images/clipboard.png" style="width: 464.0px; height: 168.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/paste.png"><img alt="../../_images/paste.png" src="../../_images/paste.png" style="width: 312.0px; height: 198.0px;" /></a>
 </li>
 </ol>
 <div class="toctree-wrapper compound">

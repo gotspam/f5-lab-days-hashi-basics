@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy Canary Test Policy"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-15 04:05:52"/>
+  <meta name="updated_date"  content="2020-09-16 06:21:54"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -288,9 +288,7 @@
 </li>
 <li><p class="first">Confirm BIG-IP is now configured with multiple apps</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app2</strong> associated with blue and green pools</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Network Map</strong> to view <strong>app2</strong> associated with blue and green pools</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/canary.png"><img alt="../../_images/canary.png" src="../../_images/canary.png" style="height: 300px;" /></a>
 <ul class="simple">
@@ -477,9 +475,7 @@
 </li>
 <li><p class="first">Confirm <strong>serviceMain</strong> is now assigned <strong>go_green</strong> irule.</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Reset <strong>Local Traffic -&gt; Pools -&gt; Statistics</strong> to clear stats</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Pools -&gt; Statistics</strong> to clear stats</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/poolreset.png"><img alt="../../_images/poolreset.png" src="../../_images/poolreset.png" style="height: 300px;" /></a>
 <ul class="simple">

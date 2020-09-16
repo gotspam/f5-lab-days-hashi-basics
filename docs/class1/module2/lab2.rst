@@ -147,9 +147,7 @@ In this section you will simulate canary testing by associating a forwarding pol
 
 #. Confirm BIG-IP is now configured with multiple apps
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view **app2** associated with blue and green pools
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view **app2** associated with blue and green pools
 
    .. image:: /_static/canary.png
        :height: 300px
@@ -341,9 +339,7 @@ In this section you will simulate canary testing by associating a forwarding pol
 
 #. Confirm **serviceMain** is now assigned **go_green** irule.
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Reset **Local Traffic -> Pools -> Statistics** to clear stats
+   - Explore BIG-IP GUI **Local Traffic -> Pools -> Statistics** to clear stats
 
    .. image:: /_static/poolreset.png
        :height: 300px

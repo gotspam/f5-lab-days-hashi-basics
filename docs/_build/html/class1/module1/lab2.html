@@ -14,7 +14,7 @@
   <meta name="title" content="BIG-IP App Services Configuration"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-15 04:05:52"/>
+  <meta name="updated_date"  content="2020-09-16 06:21:54"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -189,19 +189,16 @@
 </li>
 <li><p class="first">Deploy App1 services</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">terraform</span>&#160; <span class="pre">init</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/l1apply.png"><img alt="../../_images/l1apply.png" src="../../_images/l1apply.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="../../_images/l1apply.png"><img alt="../../_images/l1apply.png" src="../../_images/l1apply.png" style="height: 300px;" /></a>
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Network Map</strong> to view app1 services</li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/app1.png"><img alt="../../_images/app1.png" src="../../_images/app1.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/app1.png"><img alt="../../_images/app1.png" src="../../_images/app1.png" style="height: 150px;" /></a>
 </li>
 </ol>
 </div>

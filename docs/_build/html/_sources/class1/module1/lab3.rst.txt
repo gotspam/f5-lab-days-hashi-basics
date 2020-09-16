@@ -35,9 +35,7 @@ In this section you will conduct basic add and delete administration using terra
 
 #. Confirm **app1_pool** now contains 2 pool members
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view app1 services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/app1w2pool.png
        :height: 300px
@@ -51,8 +49,6 @@ In this section you will conduct basic add and delete administration using terra
 
 #. Confirm App1 services no longer exist
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
    - Explore **Local Traffic -> Virtual Servers, Pools and Nodes**
 
    .. image:: /_static/vs.png
@@ -73,6 +69,4 @@ In this section you will conduct basic add and delete administration using terra
 
 #. Confirm all services no longer exist
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Virtual Servers, Pools and Nodes** to view no app services
+   - Explore BIG-IP GUI **Local Traffic -> Virtual Servers, Pools and Nodes** to view no app services

@@ -3,9 +3,7 @@ Deploy AS3 WAF Policy
 
 #. Confirm BIG-IP is not configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to validate tenant_02 app services does not exist
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to validate tenant_02 app services does not exist
 
 #. Create **main.tf** to use terraform bigip provider
 
@@ -169,9 +167,7 @@ Deploy AS3 WAF Policy
 
 #. Confirm BIG-IP is now configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore Local **Traffic -> Network Map** to view **tenant02 serviceMain** services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view **tenant02 serviceMain** services
 
    .. image:: /_static/app3nmap.png
        :height: 300px

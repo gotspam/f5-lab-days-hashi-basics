@@ -14,7 +14,7 @@
   <meta name="title" content="BIG-IP Onboarding wtih DO (Declarative Onbarding)"/>
   <meta name="product" content="F5 And Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-15 04:05:52"/>
+  <meta name="updated_date"  content="2020-09-16 06:21:54"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -143,10 +143,10 @@
 <h1>BIG-IP Onboarding wtih DO (Declarative Onbarding)<a class="headerlink" href="#big-ip-onboarding-wtih-do-declarative-onbarding" title="Permalink to this headline">¶</a></h1>
 <p>In this section you will configure basic network configurations like NTP, DNS, and interface IP addresses.</p>
 <ol class="arabic">
-<li><p class="first">Create <strong>bigip.do.json</strong> json declaration</p>
+<li><p class="first">Create <strong>bigip1.do.json</strong> json declaration</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">bigip.do.json</span></code></li>
-<li>use vscode to add the following code to <strong>bigip.do.json</strong></li>
+<li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">bigip1.do.json</span></code></li>
+<li>use vscode to add the following code to <strong>bigip1.do.json</strong></li>
 </ul>
 <div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
  <span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/F5Networks/f5-declarative-onboarding/master/src/schema/latest/base.schema.json&quot;</span><span class="p">,</span>
@@ -191,7 +191,6 @@
      <span class="s2">&quot;myProvisioning&quot;</span><span class="p">:</span> <span class="p">{</span>
          <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Provision&quot;</span><span class="p">,</span>
          <span class="s2">&quot;ltm&quot;</span><span class="p">:</span> <span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;gtm&quot;</span><span class="p">:</span> <span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
          <span class="s2">&quot;asm&quot;</span><span class="p">:</span> <span class="s2">&quot;nominal&quot;</span>
      <span class="p">},</span>
      <span class="s2">&quot;internal&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -269,12 +268,14 @@
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span> <span class="pre">-auto-approve</span></code></li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The apply will most likely result with and error due to resource dependencies.  If so, you may simply run <strong>terraform apply</strong> again. However I recommend you resolve the dependencies as hinted in the previous step to ensure consistency.</p>
+</div>
 </li>
 <li><p class="first">Confirm BIG-IP is now configured</p>
 <ul class="simple">
-<li>Open client server Firebox Browser</li>
-<li>Login to bigip (<a class="reference external" href="https://10.1.10.6">https://10.1.10.6</a>)</li>
-<li>Explore <strong>Network -&gt; SelfIP and Vlan</strong> settings are now configured</li>
+<li>Explore BIG-IP GUI <strong>Network -&gt; SelfIP and Vlan</strong> settings are now configured</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/selfip.png"><img alt="../../_images/selfip.png" src="../../_images/selfip.png" style="height: 150px;" /></a>
 <a class="reference internal image-reference" href="../../_images/vlan.png"><img alt="../../_images/vlan.png" src="../../_images/vlan.png" style="height: 150px;" /></a>

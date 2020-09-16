@@ -3,10 +3,10 @@ BIG-IP Onboarding wtih DO (Declarative Onbarding)
 
 In this section you will configure basic network configurations like NTP, DNS, and interface IP addresses.
 
-#. Create **bigip.do.json** json declaration
+#. Create **bigip1.do.json** json declaration
 
-   - ``touch bigip.do.json``
-   - use vscode to add the following code to **bigip.do.json**
+   - ``touch bigip1.do.json``
+   - use vscode to add the following code to **bigip1.do.json**
 
    .. code:: json
 
@@ -53,7 +53,6 @@ In this section you will configure basic network configurations like NTP, DNS, a
            "myProvisioning": {
                "class": "Provision",
                "ltm": "nominal",
-               "gtm": "nominal",
                "asm": "nominal"
            },
            "internal": {
@@ -130,11 +129,12 @@ In this section you will configure basic network configurations like NTP, DNS, a
 
    - ``terraform apply -auto-approve``
 
+   .. NOTE:: 
+      The apply will most likely result with and error due to resource dependencies.  If so, you may simply run **terraform apply** again. However I recommend you resolve the dependencies as hinted in the previous step to ensure consistency.
+
 #. Confirm BIG-IP is now configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Network -> SelfIP and Vlan** settings are now configured
+   - Explore BIG-IP GUI **Network -> SelfIP and Vlan** settings are now configured
 
    .. image:: /_static/selfip.png
        :height: 150px

@@ -6,9 +6,7 @@ In this section you will create a json declaration to deploy app services using 
 
 #. Confirm BIG-IP is not configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to validate no app services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to validate no app services
 
 #. Create **main.tf** to use terraform bigip provider
 
@@ -134,9 +132,7 @@ In this section you will create a json declaration to deploy app services using 
 
 #. Confirm BIG-IP is now configured
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view app1 services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view app1 services
 
    .. image:: /_static/tenant1.png
        :height: 300px
@@ -248,9 +244,7 @@ In this section you will create a json declaration to deploy app services using 
 
 #. Confirm BIG-IP is now configured with multiple apps
 
-   - Open client server Firebox Browser
-   - Login to bigip (https://10.1.10.6)
-   - Explore **Local Traffic -> Network Map** to view **app1** and **app2** services
+   - Explore BIG-IP GUI **Local Traffic -> Network Map** to view **app1** and **app2** services
 
    .. image:: /_static/tenant1a.png
        :height: 300px
