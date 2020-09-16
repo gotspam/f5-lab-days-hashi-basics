@@ -14,7 +14,7 @@
   <meta name="title" content="Lab 1 - Basic BIG-IP Administration with Terraform"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-16 04:52:30"/>
+  <meta name="updated_date"  content="2020-09-16 04:57:50"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -204,8 +204,8 @@
 <ul class="simple">
 <li>If configurations exist peform the following steps to refresh lab otherwise skip to next section</li>
 <li>Open client server <strong>vscode terminal</strong></li>
-<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab1</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab1</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/projects/lab0</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/projects/lab0</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">main.tf</span></code></li>
 <li>use vscode to add the following code to <strong>main.tf</strong></li>
 </ul>
@@ -236,6 +236,9 @@
 </pre></div>
 </div>
 <ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span>&#160; <span class="pre">init</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">plan</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code></li>
 <li>Explore BIG-IP GUI <strong>Network SelfIP</strong> and <strong>Vlan</strong> settings and validate they are not configured</li>
 </ul>
 </li>

@@ -77,11 +77,11 @@ Access Lab Environment
 
    .. image:: /_static/vlan0.png
        :height: 150px
-       
+
    - If configurations exist peform the following steps to refresh lab otherwise skip to next section
    - Open client server **vscode terminal**
-   - ``mkdir ~/projects/lab1``
-   - ``cd ~/projects/lab1``
+   - ``mkdir ~/projects/lab0``
+   - ``cd ~/projects/lab0``
    - ``touch main.tf``
    - use vscode to add the following code to **main.tf**
 
@@ -113,6 +113,9 @@ Access Lab Environment
        ]
      }
 
+   - ``terraform  init``
+   - ``terraform plan``
+   - ``terraform apply``
    - Explore BIG-IP GUI **Network SelfIP** and **Vlan** settings and validate they are not configured
 
 .. toctree::
