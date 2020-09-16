@@ -5,7 +5,7 @@
 # ------------
 #
 # REQUIRED: Your class/lab name
-classname = "F5 & Hashicorp Automation"
+classname = "F5 and Hashicorp Basics"
 
 # OPTIONAL: The URL to the GitHub Repository for this class
 github_repo = "https://github.com/gotspam/f5-lab-days-hashi-basics"
@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.abspath('.'))
 import f5_sphinx_theme
 
 year = time.strftime("%Y")
-eventname = "Channel SE %s Hands-on Lab Guide" % (year)
+eventname = "Agility %s Hands-on Lab Guide" % (year)
 
 rst_prolog = """
 .. |classname| replace:: %s
