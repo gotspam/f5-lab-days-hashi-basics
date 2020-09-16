@@ -106,7 +106,7 @@ Access Lab Environment
      resource "bigip_command" "cleanup" {
        commands   = [
        "delete ltm node all",
-       "delete net route default",
+       "delete net route all",
        "delete net self all",
        "delete net vlan all",
        "save sys config"

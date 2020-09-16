@@ -14,7 +14,7 @@
   <meta name="title" content="Lab 1 - Basic BIG-IP Administration with Terraform"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-16 04:57:50"/>
+  <meta name="updated_date"  content="2020-09-16 05:05:21"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -227,7 +227,7 @@
 <span class="n">resource</span> <span class="s2">&quot;bigip_command&quot;</span> <span class="s2">&quot;cleanup&quot;</span> <span class="p">{</span>
   <span class="n">commands</span>   <span class="o">=</span> <span class="p">[</span>
   <span class="s2">&quot;delete ltm node all&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;delete net route default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;delete net route all&quot;</span><span class="p">,</span>
   <span class="s2">&quot;delete net self all&quot;</span><span class="p">,</span>
   <span class="s2">&quot;delete net vlan all&quot;</span><span class="p">,</span>
   <span class="s2">&quot;save sys config&quot;</span>
