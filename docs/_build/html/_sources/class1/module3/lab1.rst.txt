@@ -203,4 +203,5 @@ Deploy AS3 WAF Policy
    - Repeat same steps as previous attack
    - You should receive a message that you've successfully solved a challenge
 
-
+   .. NOTE:: 
+      Bonus lab - Replace waf policy with a different external policy.  I recommend changing policy name in declaration.

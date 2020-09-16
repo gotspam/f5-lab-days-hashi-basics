@@ -141,3 +141,6 @@ In this section you will configure basic network configurations like NTP, DNS, a
 
    .. image:: /_static/vlan.png
        :height: 150px
+
+   .. NOTE:: 
+      Bonus lab - Create json declaration for bigip2 (10.1.1.7) given external 10.1.20.7 and internal 10.1.10.7 and apply plan.
