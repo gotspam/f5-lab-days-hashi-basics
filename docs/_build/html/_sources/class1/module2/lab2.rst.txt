@@ -96,7 +96,7 @@ In this section you will simulate canary testing by associating a forwarding pol
             ],
             "members": [{
                 "shareNodes":true,
-                "servicePort": 80,
+                "servicePort": 8081,
                 "serverAddresses": [
                     "10.1.10.5",
                     "10.1.10.10"
