@@ -68,6 +68,53 @@ Access Lab Environment
    .. image:: /_static/paste.png
       :scale: 25 %
 
+#. Confirm BIG-IP is not configured with basic network configurations.
+
+   - Explore BIG-IP GUI **Network SelfIP** and **Vlan** settings and validate they are not configured
+
+   .. image:: /_static/selfip0.png
+       :height: 150px
+
+   .. image:: /_static/vlan0.png
+       :height: 150px
+       
+   - If configurations exist peform the following steps to refresh lab otherwise skip to next section
+   - Open client server **vscode terminal**
+   - ``mkdir ~/projects/lab1``
+   - ``cd ~/projects/lab1``
+   - ``touch main.tf``
+   - use vscode to add the following code to **main.tf**
+
+
+   .. code:: json
+
+     terraform {
+     required_providers {
+       bigip = {
+         source = "F5Networks/bigip"
+         version = "1.3.1"
+       }
+     }
+     }
+
+     provider "bigip" {
+       address = "10.1.1.6"
+       username = "admin"
+       password = "F5d3vops$"
+     }
+
+     resource "bigip_command" "cleanup" {
+       commands   = [
+       "delete ltm node all",
+       "delete net route default",
+       "delete net self all",
+       "delete net vlan all",
+       "save sys config"
+       ]
+     }
+
+   - Explore BIG-IP GUI **Network SelfIP** and **Vlan** settings and validate they are not configured
+
 .. toctree::
    :maxdepth: 1
    :glob:
