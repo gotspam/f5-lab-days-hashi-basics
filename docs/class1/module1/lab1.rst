@@ -5,7 +5,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
 
 #. Confirm BIG-IP is not configured with basic network configurations.
 
-   - Explore BIG-IP GUI **Network SelfIP** and **Vlan** settings and validate they are not configured
+   - Explore BIG-IP GUI **Network -> Self IPs** and **Network -> VLANs** settings to validate they are not configured
 
    .. image:: /_static/selfip0.png
        :height: 150px
@@ -18,7 +18,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
    - Open client server **vscode terminal**
    - ``mkdir ~/projects/lab1``
    - ``cd ~/projects/lab1``
-   - ``touch main.tf``
+   - ``touch main.tf`` 
    - use vscode to add the following code to **main.tf**
 
    .. code:: json
@@ -138,7 +138,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
 
 #. Confirm BIG-IP is now configured
 
-   - Explore BIG-IP GUI **Network -> SelfIP and Vlan** and validate network settings are now configured
+   - Refresh firefox browser and explore BIG-IP GUI **Network -> Self IPs** and **Network -> VLANs** to validate network settings are now configured
 
    .. image:: /_static/selfip.png
        :height: 150px

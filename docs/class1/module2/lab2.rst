@@ -339,12 +339,12 @@ In this section you will simulate canary testing by associating a forwarding pol
 
 #. Confirm **serviceMain** is now assigned **go_green** irule.
 
-   - Explore BIG-IP GUI **Local Traffic -> Pools -> Statistics** to clear stats
+   - Explore BIG-IP GUI **Local Traffic -> Pools -> Statistics** to clear stats by selecting pools and clicking reset
 
    .. image:: /_static/poolreset.png
        :height: 300px
 
-   - Test connections to **serviceMain** app running the following curl commands.  Approx 30% of traffic will be directed to the green pool (**172.17.0.5**) 
+   - Test connections to **serviceMain** app running the following curl commands.  Approx 30% of traffic will be directed to the green pool (**172.17.0.2**).  Review pool stats to confirm.
 
    .. code:: json
    

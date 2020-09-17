@@ -126,7 +126,7 @@ Deploy AS3 WAF Policy
                   "juice_awaf": {
                      "class": "WAF_Policy",
                      "ignoreChanges": false,
-                     "url": "https://raw.githubusercontent.com/scshitole/more-terraform/master/Sample_app_sec_02_waf_policy.xml"
+                     "url": "https://raw.githubusercontent.com/gotspam/f5-waf-aws/master/basicwaf.xml"
                   },
                   "secLogLocal": {
                      "class": "Security_Log_Profile",
@@ -204,4 +204,7 @@ Deploy AS3 WAF Policy
    - You should receive a message that you've successfully solved a challenge
 
    .. NOTE:: 
-      Bonus lab - Replace waf policy with a different external policy.  I recommend changing policy name in declaration.
+      Bonus lab - Replace waf policy with a different external policy.  I recommend creating a new app3a.json and policy name.
+
+   .. HINT:: 
+      Follow the github trail and examine the BIG-IP GUI **Security -> Overview -> OWASP Compliance** after applying.

@@ -63,7 +63,7 @@
             "juice_awaf": {
                "class": "WAF_Policy",
                "ignoreChanges": false,
-               "url": "https://raw.githubusercontent.com/f5devcentral/F5AppSvcDemo/master/scenarios/AppSec/JuiceShop.xml"
+               "url": "https://raw.githubusercontent.com/gotspam/f5-waf-aws/master/owasp_juice_awaf.xml"
             },
             "secLogLocal": {
                "class": "Security_Log_Profile",

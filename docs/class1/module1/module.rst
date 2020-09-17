@@ -31,10 +31,10 @@ Access Lab Environment
    .. image:: /_static/vscode.png
       :scale: 40 %
 
-#. Open a **New Terminal** in **VS Code** to run commands in this lab
+#. Open a **New Terminal** in **VS Code** to run the lab commands in the bottom window
 
    .. image:: /_static/newterm.png
-      :scale: 40 %
+      :scale: 50 %
 
 #. Update **Terraform** in **VS Code** to version 13.x
 

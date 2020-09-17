@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-16 07:59:53"/>
+  <meta name="updated_date"  content="2020-09-17 06:45:20"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -265,7 +265,7 @@
             <span class="s2">&quot;juice_awaf&quot;</span><span class="p">:</span> <span class="p">{</span>
                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;WAF_Policy&quot;</span><span class="p">,</span>
                <span class="s2">&quot;ignoreChanges&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-               <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/scshitole/more-terraform/master/Sample_app_sec_02_waf_policy.xml&quot;</span>
+               <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/gotspam/f5-waf-aws/master/basicwaf.xml&quot;</span>
             <span class="p">},</span>
             <span class="s2">&quot;secLogLocal&quot;</span><span class="p">:</span> <span class="p">{</span>
                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;Security_Log_Profile&quot;</span><span class="p">,</span>
@@ -342,7 +342,11 @@
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Bonus lab - Replace waf policy with a different external policy.  I recommend changing policy name in declaration.</p>
+<p class="last">Bonus lab - Replace waf policy with a different external policy.  I recommend creating a new app3a.json and policy name.</p>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Follow the github trail and examine the BIG-IP GUI <strong>Security -&gt; Overview -&gt; OWASP Compliance</strong> after applying.</p>
 </div>
 </li>
 </ol>

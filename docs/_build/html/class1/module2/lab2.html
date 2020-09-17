@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy Canary Test Policy"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-09-16 07:59:53"/>
+  <meta name="updated_date"  content="2020-09-17 06:45:20"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -475,11 +475,11 @@
 </li>
 <li><p class="first">Confirm <strong>serviceMain</strong> is now assigned <strong>go_green</strong> irule.</p>
 <ul class="simple">
-<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Pools -&gt; Statistics</strong> to clear stats</li>
+<li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Pools -&gt; Statistics</strong> to clear stats by selecting pools and clicking reset</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/poolreset.png"><img alt="../../_images/poolreset.png" src="../../_images/poolreset.png" style="height: 300px;" /></a>
 <ul class="simple">
-<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  Approx 30% of traffic will be directed to the green pool (<strong>172.17.0.5</strong>)</li>
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  Approx 30% of traffic will be directed to the green pool (<strong>172.17.0.2</strong>).  Review pool stats to confirm.</li>
 </ul>
 <div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
 <span class="n">do</span>
