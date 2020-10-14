@@ -57,7 +57,7 @@ Access Lab Environment
    .. image:: /_static/firefox1.png
       :scale: 25 %
 
-#. Login to BIG-IP management interface (https://10.1.1.6) admin : F5d3vops
+#. Login to BIG-IP management interface (https://10.1.1.6) admin : F5d3vops$
 
    .. NOTE::
       Ctrl+c and Ctrl+v does not work with the firefox web instance.  You must paste into firefox cliboard and submit, then rtclk paste to paste as shown in the images below
