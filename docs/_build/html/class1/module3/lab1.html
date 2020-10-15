@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy AS3 WAF Policy"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-10-15 03:42:38"/>
+  <meta name="updated_date"  content="2020-10-15 04:37:49"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -316,6 +316,18 @@
 <li>Click <strong>serviceMain</strong> to view details of <strong>tenant02 serviceMain</strong> services and note a WAF Policy associated</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/app3detail.png"><img alt="../../_images/app3detail.png" src="../../_images/app3detail.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Click <strong>_WAF_App_3</strong> to confirm <strong>juice_awaf</strong> policy associated with App_3</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/wafapp3.png"><img alt="../../_images/wafapp3.png" src="../../_images/wafapp3.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li>Explore BIG-IP GUI <strong>Security -&gt; Overview -&gt; OWASP Dashboard</strong> then click <strong>juice_awaf</strong> to view dashboard</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/wafapp3.png"><img alt="../../_images/wafapp3.png" src="../../_images/wafapp3.png" style="height: 300px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Basic waf policy only covers a subset of the OWASP Top 10 vulnerabilities.  Additional configuration is required to acheive greater OWASP compliance.</p>
+</div>
 </li>
 <li><p class="first">Confirm <strong>serviceMain</strong> is serving up <strong>juiceshop app</strong></p>
 <ul class="simple">

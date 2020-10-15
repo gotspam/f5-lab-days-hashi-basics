@@ -177,6 +177,19 @@ Deploy AS3 WAF Policy
    .. image:: /_static/app3detail.png
        :height: 300px
 
+   - Click **_WAF_App_3** to confirm **juice_awaf** policy associated with App_3
+
+   .. image:: /_static/wafapp3.png
+       :height: 300px
+
+   - Explore BIG-IP GUI **Security -> Overview -> OWASP Dashboard** then click **juice_awaf** to view dashboard
+
+   .. image:: /_static/wafapp3.png
+       :height: 300px
+
+   .. NOTE:: 
+      Basic waf policy only covers a subset of the OWASP Top 10 vulnerabilities.  Additional configuration is required to acheive greater OWASP compliance.
+
 #. Confirm **serviceMain** is serving up **juiceshop app**
 
    - Open new tab on client server Firebox Browser
