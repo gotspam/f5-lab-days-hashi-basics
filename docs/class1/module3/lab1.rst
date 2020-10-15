@@ -217,7 +217,7 @@ Deploy AS3 WAF Policy
    - You should receive a message that you've successfully solved a challenge
 
    .. NOTE:: 
-      Bonus lab - Replace waf policy with a different external policy.  I recommend creating a new app3a.json and policy (https://raw.githubusercontent.com/gotspam/f5-lab-days-hashi-basics/master/assets/lab3/owaspwaf.xml).
+      Bonus lab - Replace waf policy with a different external policy.  I recommend creating a new app3a.json and policy.
 
    .. HINT:: 
-      Follow the github trail and examine the BIG-IP GUI **Security -> Overview -> OWASP Compliance** after applying.
+      Follow the github trail and examine the BIG-IP GUI **Security -> Overview -> OWASP Compliance** after applying. (https://raw.githubusercontent.com/gotspam/f5-lab-days-hashi-basics/master/assets/lab3/owaspwaf.xml)
