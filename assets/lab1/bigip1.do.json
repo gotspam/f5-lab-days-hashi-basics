@@ -48,7 +48,8 @@
             "class": "VLAN",
             "tag": 4091,
             "interfaces": [{
-                "name": "1.1"
+                "name": "1.1",
+                "tagged": false
             }],
             "cmpHash": "dst-ip"
         },
@@ -63,7 +64,8 @@
             "class": "VLAN",
             "tag": 4092,
             "interfaces": [{
-                "name": "1.2"
+                "name": "1.2",
+                "tagged": false
             }]
         },
         "external-self": {

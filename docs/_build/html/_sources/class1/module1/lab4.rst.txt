@@ -59,7 +59,8 @@ In this section you will configure basic network configurations like NTP, DNS, a
                "class": "VLAN",
                "tag": 4091,
                "interfaces": [{
-                   "name": "1.1"
+                   "name": "1.1",
+                   "tagged": false
                }]
            },
            "internal-self": {
@@ -73,7 +74,8 @@ In this section you will configure basic network configurations like NTP, DNS, a
                "class": "VLAN",
                "tag": 4092,
                "interfaces": [{
-                   "name": "1.2"
+                   "name": "1.2",
+                   "tagged": false
                }]
            },
            "external-self": {

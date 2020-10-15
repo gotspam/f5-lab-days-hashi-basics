@@ -14,7 +14,7 @@
   <meta name="title" content="Deploy Canary Test Policy"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-10-15 02:54:16"/>
+  <meta name="updated_date"  content="2020-10-15 03:42:38"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -296,7 +296,7 @@
 </ul>
 <a class="reference internal image-reference" href="../../_images/canary0.png"><img alt="../../_images/canary0.png" src="../../_images/canary0.png" style="height: 300px;" /></a>
 <ul class="simple">
-<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  All traffic should be served by blue pool</li>
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  Refresh browser to confirm all traffic should be served by <strong>blue pool</strong></li>
 </ul>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
 <span class="n">do</span>
@@ -308,11 +308,15 @@
 <span class="n">done</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All traffic should be served by <strong>blue pool</strong> as the uri does not match forwarding policy <strong>“contains” “about”</strong></p>
+</div>
 <a class="reference internal image-reference" href="../../_images/canary1.png"><img alt="../../_images/canary1.png" src="../../_images/canary1.png" style="height: 300px;" /></a>
 <ul class="simple">
-<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  All traffic should be served by green pool</li>
+<li>Test connections to <strong>serviceMain</strong> app running the following curl commands.  Refresh browser to confirm all traffic should be served by <strong>green pool</strong></li>
 </ul>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
 <span class="n">do</span>
   <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">about</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="s2">&quot;172.17.0..&quot;</span>
   <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">20.20</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">about</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="s2">&quot;172.17.0..&quot;</span>

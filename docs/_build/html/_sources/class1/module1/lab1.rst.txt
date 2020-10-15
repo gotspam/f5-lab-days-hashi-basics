@@ -137,7 +137,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
        :height: 300px
 
    .. NOTE::
-      The  **bigip terraform provider** contains native resources to help facilitate provisioning services on BIG-IPs.  For example `bigip_sys_ntp <https://registry.terraform.io/providers/F5Networks/bigip/latest/docs/resources/bigip_sys_ntp>`__ resource is helpful when configuring NTP server on the BIG-IP.
+      The  **bigip terraform provider** contains native resources to help facilitate provisioning services on BIG-IPs.  For example `bigip_sys_ntp <https://registry.terraform.io/providers/F5Networks/bigip/latest/docs/resources/bigip_sys_ntp>`__ resource is helpful when configuring NTP server on the BIG-IP.  Take time to explore the other resources called in the terraform file.
 
 #. Confirm BIG-IP is now configured
 

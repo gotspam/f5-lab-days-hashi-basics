@@ -157,7 +157,7 @@ In this section you will simulate canary testing by associating a forwarding pol
    .. image:: /_static/canary0.png
        :height: 300px
 
-   - Test connections to **serviceMain** app running the following curl commands.  All traffic should be served by blue pool
+   - Test connections to **serviceMain** app running the following curl commands.  Refresh browser to confirm all traffic should be served by **blue pool**
 
    .. code:: bash
    
@@ -170,14 +170,18 @@ In this section you will simulate canary testing by associating a forwarding pol
         curl -s http://10.1.20.20:8080/test | grep -o "172.17.0.."
       done
 
+   .. NOTE:: 
+      
+      All traffic should be served by **blue pool** as the uri does not match forwarding policy **"contains" "about"**
+
    .. image:: /_static/canary1.png
        :height: 300px
 
-   - Test connections to **serviceMain** app running the following curl commands.  All traffic should be served by green pool
+   - Test connections to **serviceMain** app running the following curl commands.  Refresh browser to confirm all traffic should be served by **green pool**
 
    .. code:: bash
 
-         for i in {1..5} 
+      for i in {1..5} 
       do
         curl -s http://10.1.20.20:8080/about | grep -o "172.17.0.."
         curl -s http://10.1.20.20:8080/about | grep -o "172.17.0.."
