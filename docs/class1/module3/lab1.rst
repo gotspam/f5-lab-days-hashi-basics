@@ -182,7 +182,7 @@ Deploy AS3 WAF Policy
    .. image:: /_static/wafapp3.png
        :height: 300px
 
-   - Explore BIG-IP GUI **Security -> Overview -> OWASP Dashboard** then click **juice_awaf** to view dashboard
+   - Explore BIG-IP GUI **Security -> Overview -> OWASP Compliance** then click **juice_awaf** to view dashboard
 
    .. image:: /_static/owaspdashboard.png
        :height: 300px
