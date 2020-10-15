@@ -67,6 +67,7 @@ In this section you will conduct basic add and delete administration using terra
    .. image:: /_static/destroy.png
        :height: 300px
 
-#. Confirm all services no longer exist
+#. Confirm all services and network configs no longer exist
 
    - Explore BIG-IP GUI **Local Traffic -> Virtual Servers, Pools and Nodes** to view no app services
+   - Explore BIG-IP GUI **Network -> Self IPs** and **Network -> VLANs** settings to validate they are not configured

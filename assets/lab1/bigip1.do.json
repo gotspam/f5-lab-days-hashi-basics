@@ -46,6 +46,7 @@
         },
         "internal": {
             "class": "VLAN",
+            "tag": 4091,
             "interfaces": [{
                 "name": "1.1"
             }],
@@ -60,6 +61,7 @@
         },
         "external": {
             "class": "VLAN",
+            "tag": 4092,
             "interfaces": [{
                 "name": "1.2"
             }]

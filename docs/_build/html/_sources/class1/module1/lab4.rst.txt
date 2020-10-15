@@ -57,10 +57,10 @@ In this section you will configure basic network configurations like NTP, DNS, a
            },
            "internal": {
                "class": "VLAN",
+               "tag": 4091,
                "interfaces": [{
                    "name": "1.1"
-               }],
-               "cmpHash": "dst-ip"
+               }]
            },
            "internal-self": {
                "class": "SelfIp",
@@ -71,6 +71,7 @@ In this section you will configure basic network configurations like NTP, DNS, a
            },
            "external": {
                "class": "VLAN",
+               "tag": 4092,
                "interfaces": [{
                    "name": "1.2"
                }]

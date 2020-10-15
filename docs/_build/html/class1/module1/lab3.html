@@ -14,7 +14,7 @@
   <meta name="title" content="Modify and Destroy App Services Configuration"/>
   <meta name="product" content="F5 and Hashicorp Basics"/>
   <meta name="version" content=""/>
-  <meta name="updated_date"  content="2020-10-15 12:34:16"/>
+  <meta name="updated_date"  content="2020-10-15 02:54:16"/>
   <meta name="archived" content="Archived documents excluded"/>
   <meta name="doc_type" content="Manual"/>
   <meta name="lifecycle" content="release"/>
@@ -200,9 +200,10 @@
 </ul>
 <a class="reference internal image-reference" href="../../_images/destroy.png"><img alt="../../_images/destroy.png" src="../../_images/destroy.png" style="height: 300px;" /></a>
 </li>
-<li><p class="first">Confirm all services no longer exist</p>
+<li><p class="first">Confirm all services and network configs no longer exist</p>
 <ul class="simple">
 <li>Explore BIG-IP GUI <strong>Local Traffic -&gt; Virtual Servers, Pools and Nodes</strong> to view no app services</li>
+<li>Explore BIG-IP GUI <strong>Network -&gt; Self IPs</strong> and <strong>Network -&gt; VLANs</strong> settings to validate they are not configured</li>
 </ul>
 </li>
 </ol>

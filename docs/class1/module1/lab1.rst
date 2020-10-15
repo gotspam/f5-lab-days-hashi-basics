@@ -49,6 +49,9 @@ In this section you will configure basic network configurations like NTP, DNS, a
    .. image:: /_static/maintf.png
        :height: 300px
 
+   .. NOTE::
+      VS Code for this lab is configured to autosave so everything entered in the editor panel will be saved
+
 #. Test terraform connectivity to bigip
 
    - ``terraform  init``
