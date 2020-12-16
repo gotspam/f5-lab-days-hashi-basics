@@ -12,3 +12,7 @@ docker run -P -p 0.0.0.0:8081:80/tcp -d --restart unless-stopped nginxdemos/hell
 Firefox
 docker container restart
 docker run -d --name=firefox -p 5800:5800 -v /docker/appdata/firefox:/config:rw --shm-size 2g jlesage/firefox
+
+
+
+https://www.axcelinno.io/services/security-compliance

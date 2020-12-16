@@ -159,6 +159,11 @@ Deploy AS3 WAF Policy
          }
       }
 
+   - Explore the basicwaf.xml policy used for **juice_awaf**
+
+   .. image:: /_static/basicwafpolicy.png
+       :height: 120px
+
 #. Deploy Tenant02 App3 services
 
    - ``terraform  init``
@@ -221,3 +226,9 @@ Deploy AS3 WAF Policy
 
    .. HINT:: 
       Follow the github trail and examine the BIG-IP GUI **Security -> Overview -> OWASP Compliance** after applying. (https://raw.githubusercontent.com/gotspam/f5-lab-days-hashi-basics/master/assets/lab3/owaspwaf.xml)
+
+   .. raw:: html
+
+       <div style="text-align: center; margin-bottom: 2em;">
+       <iframe width="1120" height="630" src="https://www.youtube.com/embed/Eu6jZ8XDGsE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       </div>
