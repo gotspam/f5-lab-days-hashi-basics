@@ -32,7 +32,7 @@ In this section you will create a json declaration to deploy app services using 
           password = var.password
       }
 
-      resource "bigip_as3"  "tenant01_app1" {
+      resource "bigip_as3" "tenant01_app1" {
          as3_json = "${file("app1.json")}"
       }
 
